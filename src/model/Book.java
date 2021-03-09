@@ -1,37 +1,19 @@
 package model;
 
-public class Book {
+public class Book extends Text {
 	
-	private String name;
-	private String author;
+	
 	private int isbn;
 	private double price;
 	private String initialChapters;
 	private String review;
 	
-	public Book(String name, String author, int isbn, double price, String initialChapters, String review) {
-		this.name = name;
-		this.author = author;
+	public Book(String name, String author, String editorial, int nPages, int isbn, double price, String initialChapters, String review) {
+		super(name, author, editorial, nPages);
 		this.isbn = isbn;
 		this.price = price;
 		this.initialChapters = initialChapters;
 		this.review = review;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public int getIsbn() {
