@@ -48,5 +48,4 @@ public class Book extends Text {
 		this.review = review;
 	}
 	
-	
 }

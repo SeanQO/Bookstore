@@ -1,9 +1,19 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bookstore {
+	
+	private List<Book> booksAvailable;
 	
 	public Bookstore() {
 		
+		booksAvailable = new ArrayList<Book>();
 	}
 	
 	/* 
@@ -44,5 +54,22 @@ public class Bookstore {
 	 */
 	public void SectionFour() {
 		
+	}
+	
+	public void importDataBooksList(String fn) throws IOException {
+		File fl = new File(fn);
+		@SuppressWarnings("resource")
+		BufferedReader br = new BufferedReader(new FileReader(fl));
+		br.readLine();
+		
+		String line = br.readLine();
+		
+		while (line != null) {
+			String[] split = line.split(",");			
+			Book book = new Book(split[0], split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]), Double.parseDouble(split[5]), split[6], split[7]);
+			booksAvailable.add(book);
+			line = br.readLine();
+			
+		}
 	}
 }
