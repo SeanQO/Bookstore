@@ -8,8 +8,8 @@ public class Client {
 	double timeInStore;
 	
 	public Client() {
-		isnbList = new ArrayList<>();
-		basket = new Stack<>();
+		isnbList = new ArrayList<Integer>();
+		basket = new Stack<Book>();
 		timeInStore = 0;
 		
 	}
@@ -20,6 +20,10 @@ public class Client {
 
 	public Stack<Book> getBasket() {
 		return basket;
+	}
+	
+	public double getTimeInStore() {
+		return timeInStore;
 	}
 	
 	public void addBookToBasket(Book book) {
