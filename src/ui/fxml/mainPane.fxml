@@ -35,7 +35,7 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="sectionOneAnchorPane" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="218.0" layoutY="246.0" text="Section one">
                <font>

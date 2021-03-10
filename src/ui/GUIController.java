@@ -7,12 +7,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class GUIController {
 	
 	@FXML
 	private BorderPane mainBorderPane;
+	
+    @FXML
+    private AnchorPane sectionOneAnchorPane;
 	
     @FXML
     private MenuItem openSectionOne;
@@ -28,6 +32,7 @@ public class GUIController {
 
     @FXML
     void openSectionOne(ActionEvent event) {
+    	mainBorderPane.setCenter(sectionOneAnchorPane);
     	
     }
     
@@ -49,12 +54,34 @@ public class GUIController {
     
     @FXML
     void openSectionThree(ActionEvent event) {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
+        	fxmlLoader.setController(this);
 
+        	Parent Pane = fxmlLoader.load();
+        
+        	mainBorderPane.setCenter(Pane);
+        	
+		} catch (IOException ioException) {
+			// TODO: handle exception with an alert that displays the content of the error.
+		}
+    	
     }
 
     @FXML
     void openSectionFour(ActionEvent event) {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionFourPane.fxml"));
+        	fxmlLoader.setController(this);
 
+        	Parent Pane = fxmlLoader.load();
+        
+        	mainBorderPane.setCenter(Pane);
+        	
+		} catch (IOException ioException) {
+			// TODO: handle exception with an alert that displays the content of the error.
+		}
+    	
     }
 
 
