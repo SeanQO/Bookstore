@@ -73,11 +73,15 @@ public class GUIController {
     @FXML
     void openSectionFour(ActionEvent event) {
     	try {
-    		throw new IOException();
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
+        	fxmlLoader.setController(this);
 
+        	Parent Pane = fxmlLoader.load();
+        
+        	mainBorderPane.setCenter(Pane);
+        	
 		} catch (IOException ioException) {
 			// TODO: handle exception with an alert that displays the content of the error.
-
 		}
     	
     }
