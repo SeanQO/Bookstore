@@ -73,7 +73,7 @@ public class GUIController {
     @FXML
     void openSectionFour(ActionEvent event) {
     	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionFourPane.fxml"));
         	fxmlLoader.setController(this);
 
         	Parent Pane = fxmlLoader.load();
