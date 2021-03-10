@@ -13,7 +13,7 @@ public class Menu {
 	}
 	
 	private static void importDataBooks() throws IOException {
-		String dataLink = "data/restaurant.csv";
+		String dataLink = "data/bookList.csv";
 		bs.importDataBooksList(dataLink);
 	}
 }
