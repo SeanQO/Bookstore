@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="214.0" layoutY="249.0" prefHeight="103.0" prefWidth="372.0" text="Section two">
-         <font>
-            <Font size="70.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane layoutX="65.0" layoutY="150.0" prefHeight="300.0" prefWidth="250.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="260.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="420.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="420.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="320.0" spacing="25.0">
+                     <children>
+                        <Label prefHeight="229.0" prefWidth="320.0" text="Please select a sorting algorithm to give you the best route trough the library." wrapText="true">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Algorithm One" />
+                        <Button mnemonicParsing="false" text="Algorithm Two" />
+                        <Button mnemonicParsing="false" text="Algorithm Three" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
