@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class GUIController {
     @FXML
     private MenuItem openSectionFour;
     
-    // ****** stage one ******
+    // ****** section one ******
     @FXML
     private TextField searchBookTxF;
 
@@ -41,6 +42,21 @@ public class GUIController {
 
     @FXML
     private ScrollPane clientListTable;
+    
+    // ****** section two ******
+    @FXML
+    private BorderPane sectionTwoBorderPane;
+
+    @FXML
+    private AnchorPane mainSectionTwoPane;
+    
+    	// * second section two *
+    
+    @FXML
+    private Label bookNameTxF;
+
+    @FXML
+    private Label bookLocationTxF;
     
     
     // ****** menu options actions ******
@@ -60,6 +76,8 @@ public class GUIController {
         
         	mainBorderPane.setCenter(Pane);
         	
+        	setSectionTwoMain();
+        	
 		} catch (IOException ioException) {
 			// TODO: handle exception with an alert that displays the content of the error.
 		}
@@ -68,6 +86,7 @@ public class GUIController {
     
     @FXML
     void openSectionThree(ActionEvent event) {
+
     	try {
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
         	fxmlLoader.setController(this);
@@ -84,6 +103,7 @@ public class GUIController {
 
     @FXML
     void openSectionFour(ActionEvent event) {
+
     	try {
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionFourPane.fxml"));
         	fxmlLoader.setController(this);
@@ -98,7 +118,7 @@ public class GUIController {
     	
     }
 
-    // ****** stage one actions ******
+    // ****** section one actions ******
     @FXML
     void searchBook(ActionEvent event) {
     	System.out.println("Search book button working");
@@ -131,6 +151,55 @@ public class GUIController {
     @FXML
     void generateISNBList(ActionEvent event) {
     	System.out.println("generate isnb list button working");
+    }
+    
+    // ****** section two change panes ******
+    
+    private void setSectionTwoMain() {
+    	sectionTwoBorderPane.setRight(mainSectionTwoPane);
+    	
+    }
+    
+    private void setSectionTwoSecondary() {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoSecondPane.fxml"));
+        	fxmlLoader.setController(this);
+
+        	Parent Pane = fxmlLoader.load();
+        
+        	sectionTwoBorderPane.setRight(Pane);
+        	
+		} catch (IOException ioException) {
+			// TODO: handle exception with an alert that displays the content of the error.
+		}
+    	
+    }
+    
+    // ****** section two main pane actions ******
+    @FXML
+    void oneSortList(ActionEvent event) {
+    	setSectionTwoSecondary();
+    }
+
+    @FXML
+    void threeSortList(ActionEvent event) {
+    	setSectionTwoSecondary();
+    }
+
+    @FXML
+    void twoSortList(ActionEvent event) {
+    	setSectionTwoSecondary();
+    }
+    
+    // ****** section two main secondary pane actions ******
+    @FXML
+    void nextBook(ActionEvent event) {
+    	System.out.println("next book button working");
+    }
+
+    @FXML
+    void previousBook(ActionEvent event) {
+    	System.out.println("prev book button working");
     }
     
 }

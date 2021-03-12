@@ -38,7 +38,7 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane fx:id="sectionOneAnchorPane" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="sectionOneAnchorPane" prefHeight="600.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
                <children>
