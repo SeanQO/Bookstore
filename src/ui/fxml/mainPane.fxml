@@ -44,24 +44,24 @@
                <children>
                   <HBox spacing="10.0">
                      <children>
-                        <TextField prefWidth="200.0" />
-                        <Button mnemonicParsing="false" text="Search" />
+                        <TextField fx:id="searchBookTxF" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#searchBook" text="Search" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="350.0" prefWidth="280.0">
+                        <ScrollPane fx:id="libraryBooksTable" prefHeight="350.0" prefWidth="280.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="280.0" />
                           </content>
                         </ScrollPane>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="40.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add &gt;&gt;" />
-                              <Button mnemonicParsing="false" text="Remove &lt;&lt;" />
+                              <Button mnemonicParsing="false" onAction="#addBookToList" text="Add &gt;&gt;" />
+                              <Button mnemonicParsing="false" onAction="#removeBookFromList" text="Remove &lt;&lt;" />
                            </children>
                         </VBox>
-                        <ScrollPane prefHeight="200.0" prefWidth="280.0">
+                        <ScrollPane fx:id="clientListTable" prefHeight="200.0" prefWidth="280.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="280.0" />
                            </content>
@@ -75,14 +75,14 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="115.0" prefWidth="130.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Display first Chapter" />
-                              <Button mnemonicParsing="false" text="Reviews" />
-                              <Button mnemonicParsing="false" text="Rating" />
+                              <Button mnemonicParsing="false" onAction="#showFirstChapter" text="First Chapter" />
+                              <Button mnemonicParsing="false" onAction="#showReviews" text="Reviews" />
+                              <Button mnemonicParsing="false" onAction="#showRating" text="Rating" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Generate ISBN codes" />
+                              <Button mnemonicParsing="false" onAction="#generateISNBList" text="Generate ISBN codes" />
                            </children>
                         </VBox>
                      </children>

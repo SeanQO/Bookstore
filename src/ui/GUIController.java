@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -29,6 +31,16 @@ public class GUIController {
 
     @FXML
     private MenuItem openSectionFour;
+    
+    // ****** stage one ******
+    @FXML
+    private TextField searchBookTxF;
+
+    @FXML
+    private ScrollPane libraryBooksTable;
+
+    @FXML
+    private ScrollPane clientListTable;
     
     
     // ****** menu options actions ******
@@ -86,6 +98,39 @@ public class GUIController {
     	
     }
 
+    // ****** stage one actions ******
+    @FXML
+    void searchBook(ActionEvent event) {
+    	System.out.println("Search book button working");
+    }
+    
+    @FXML
+    void addBookToList(ActionEvent event) {
+    	System.out.println("add book to list button working");
+    }
+    
+    @FXML
+    void removeBookFromList(ActionEvent event) {
+    	System.out.println("remove book from list button working");
+    }
+    
+    @FXML
+    void showFirstChapter(ActionEvent event) {
+    	System.out.println("show first chapter button working");
+    }
 
+    @FXML
+    void showRating(ActionEvent event) {
+    	System.out.println("show rating button working");
+    }
 
+    @FXML
+    void showReviews(ActionEvent event) {
+    	System.out.println("show reviews button working");
+    }
+    @FXML
+    void generateISNBList(ActionEvent event) {
+    	System.out.println("generate isnb list button working");
+    }
+    
 }
