@@ -3,20 +3,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="sectionTwoBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="380.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="65.0" layoutY="150.0" prefHeight="300.0" prefWidth="250.0">
+            <ScrollPane layoutX="51.0" layoutY="104.0" prefHeight="392.0" prefWidth="278.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="260.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="280.0">
+                     <children>
+                        <TableView fx:id="sTwoBookTable" prefHeight="390.0" prefWidth="280.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Book name" />
+                            <TableColumn prefWidth="75.0" text="ISNB" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
          </children>

@@ -42,10 +42,10 @@ public class GUIController {
     private TextField searchBookTxF;
 
     @FXML
-    private ScrollPane libraryBooksTable;
+    private TableView<?> allBooksTable;
 
     @FXML
-    private ScrollPane clientListTable;
+    private TableView<?> clientListTable;
     
     	// * section one register client *
     @FXML
@@ -59,6 +59,10 @@ public class GUIController {
     
     
     // ****** section two ******
+    
+    @FXML
+    private TableView<?> sTwoBookTable;
+    
     @FXML
     private BorderPane sectionTwoBorderPane;
 
