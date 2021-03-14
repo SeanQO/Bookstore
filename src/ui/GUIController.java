@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -71,6 +72,17 @@ public class GUIController {
 
     @FXML
     private Label bookLocationTxF;
+    
+    // ****** section three ******
+    
+    @FXML
+    private TextField searchClientTxF;
+
+    @FXML
+    private TableView<?> clientTable;
+
+    @FXML
+    private TableView<?> bookTable;
     
     // ****** menu options actions ******
     @FXML
@@ -234,6 +246,18 @@ public class GUIController {
     @FXML
     void previousBook(ActionEvent event) {
     	System.out.println("prev book button working");
+    }
+    
+    // ****** section three actions******
+    
+    @FXML
+    void checkBooks(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchClient(ActionEvent event) {
+
     }
     
 }
