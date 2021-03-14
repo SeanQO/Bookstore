@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class GUIController {
 	
@@ -43,6 +46,17 @@ public class GUIController {
     @FXML
     private ScrollPane clientListTable;
     
+    	// * section one register client *
+    @FXML
+    private Button registerAndClose;
+    
+    @FXML
+    private TextField clientNameTxtF;
+
+    @FXML
+    private TextField idClientTxtF;
+    
+    
     // ****** section two ******
     @FXML
     private BorderPane sectionTwoBorderPane;
@@ -57,7 +71,6 @@ public class GUIController {
 
     @FXML
     private Label bookLocationTxF;
-    
     
     // ****** menu options actions ******
     @FXML
@@ -150,7 +163,28 @@ public class GUIController {
     }
     @FXML
     void generateISNBList(ActionEvent event) {
-    	System.out.println("generate isnb list button working");
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/clientRegister.fxml"));
+    		Parent registerDealerParent = fxmlLoader.load();
+
+    		Scene scene = new Scene(registerDealerParent);
+    		Stage stage = new Stage();
+    		stage.setScene(scene);
+    		stage.setTitle("Register Client");
+    		stage.setResizable(false);
+    		stage.show();
+    		
+		} catch (IOException ioException) {
+			// TODO: handle exception with an alert that displays the content of the error.
+		}
+    }
+    	
+    	// * register client *
+    @FXML
+    void registerAndCodes(ActionEvent event) {
+    	Stage stage = (Stage) registerAndClose.getScene().getWindow();
+        stage.close();
+
     }
     
     // ****** section two change panes ******
