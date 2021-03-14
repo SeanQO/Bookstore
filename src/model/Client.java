@@ -7,14 +7,43 @@ import java.util.Stack;
 public class Client {
 	ArrayList<Integer> isnbList;
 	Stack<Book> basket;
+	int id;
+	String name;
 	double timeInStore;
 
 	public Client() {
 		isnbList = new ArrayList<Integer>();
 		basket = new Stack<Book>();
 		timeInStore = 0;
-
+		id = 0;
+		name = "";
 	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 
 	public ArrayList<Integer> getIsnbList() {
 		return isnbList;
