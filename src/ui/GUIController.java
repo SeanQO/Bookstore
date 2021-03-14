@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -88,7 +89,7 @@ public class GUIController {
     @FXML
     private TableView<?> bookTable;
     
-    // ****** section three ******
+    // ****** section four ******
     @FXML
     private Label nextClientTxL;
 
@@ -109,9 +110,24 @@ public class GUIController {
 
     @FXML
     private TableView<?> registerThreeTable;
+    
+    @FXML
+    private TableView<?> registerFourTable;
 
     @FXML
     private Label clientNameFourTxL;
+    
+    @FXML
+    private Button ROneButton;
+    
+    @FXML
+    private Button RTwoButton;
+    
+    @FXML
+    private Button RThreeButton;
+    
+    @FXML
+    private Button RFourButton;
     
     // ****** menu options actions ******
     @FXML
@@ -290,29 +306,159 @@ public class GUIController {
     }
     
     // ****** section four pane actions ******
+    private boolean isRegisterOpen(int regNumber) {
+    	switch (regNumber) {
+		case 1:
+			if (clientNameOneTxL.getText().equals("Register closed")) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		case 2:
+			if (clientNameTwoTxL.getText().equals("Register closed")) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		case 3:
+			if (clientNameThreeTxL.getText().equals("Register closed")) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		case 4:
+			if (clientNameFourTxL.getText().equals("Register closed")) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		default:
+			break;
+		}
+    	return false;
+    }
     @FXML
-    void activeDesactiveRFour(ActionEvent event) {
+    void nextStep(ActionEvent event) {
 
     }
-
+    
     @FXML
     void activeDesactiveROne(ActionEvent event) {
-
+    	if (isRegisterOpen(1)) {
+			if (isRegisterOpen(2) || isRegisterOpen(3) || isRegisterOpen(4)) {
+				closeRegister(1);
+			}else {
+				lastRegisterAlert();
+			}
+		}else {
+			openRegister(1);
+		}
+    	
+    }
+    
+    private void closeRegister(int regNumber) {
+    	switch (regNumber) {
+		case 1:
+			clientNameOneTxL.setText("Register closed");
+			registerOneTable.setDisable(true);
+			ROneButton.setText("Open register");
+			break;
+		case 2:
+			clientNameTwoTxL.setText("Register closed");
+			registerTwoTable.setDisable(true);
+			RTwoButton.setText("Open register");
+			break;
+		case 3:
+			clientNameThreeTxL.setText("Register closed");
+			registerThreeTable.setDisable(true);
+			RThreeButton.setText("Open register");
+			break;
+		case 4:
+			clientNameFourTxL.setText("Register closed");
+			registerFourTable.setDisable(true);
+			RFourButton.setText("Open register");
+			break;
+		default:
+			break;
+		}
+	}
+    
+    private void openRegister(int regNumber) {
+    	switch (regNumber) {
+		case 1:
+			clientNameOneTxL.setText("Register open");
+			registerOneTable.setDisable(false);
+			ROneButton.setText("Close register");
+			break;
+		case 2:
+			clientNameTwoTxL.setText("Register open");
+			registerTwoTable.setDisable(false);
+			RTwoButton.setText("Close register");
+			break;
+		case 3:
+			clientNameThreeTxL.setText("Register open");
+			registerThreeTable.setDisable(false);
+			RThreeButton.setText("Close register");
+			break;
+		case 4:
+			clientNameFourTxL.setText("Register open");
+			registerFourTable.setDisable(false);
+			RFourButton.setText("Close register");
+			break;
+		default:
+			break;
+		}
+	}
+    
+    @FXML
+    void activeDesactiveRTwo(ActionEvent event) {
+    	if (isRegisterOpen(2)) {
+			if (isRegisterOpen(1) || isRegisterOpen(3) || isRegisterOpen(4)) {
+				closeRegister(2);
+			}else {
+				lastRegisterAlert();
+			}
+		}else {
+			openRegister(2);
+		}
     }
 
     @FXML
     void activeDesactiveRThree(ActionEvent event) {
-
+    	if (isRegisterOpen(3)) {
+			if (isRegisterOpen(1) || isRegisterOpen(2) || isRegisterOpen(4)) {
+				closeRegister(3);
+			}else {
+				lastRegisterAlert();
+			}
+		}else {
+			openRegister(3);
+		}
     }
-
+    
     @FXML
-    void activeDesactiveRTwo(ActionEvent event) {
-
+    void activeDesactiveRFour(ActionEvent event) {
+    	if (isRegisterOpen(4)) {
+			if (isRegisterOpen(1) || isRegisterOpen(3) || isRegisterOpen(2)) {
+				closeRegister(4);
+			}else {
+				lastRegisterAlert();
+			}
+		}else {
+			openRegister(4);
+		}
     }
-
-    @FXML
-    void nextStep(ActionEvent event) {
-
+    
+    private void lastRegisterAlert() {
+    	Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Only one register Open.");
+		error.setHeaderText("there is only one register available.");
+		error.setContentText("Please open al least one more register in order to close this one.");
+		error.showAndWait();
     }
     
 }

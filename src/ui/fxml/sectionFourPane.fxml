@@ -57,7 +57,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="activeDesactiveROne" mnemonicParsing="false" prefHeight="68.0" prefWidth="54.0" text="toggle active" wrapText="true" />
+                              <Button fx:id="ROneButton" mnemonicParsing="false" onAction="#activeDesactiveROne" prefHeight="68.0" prefWidth="62.0" text="close register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -67,12 +67,12 @@
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Label fx:id="clientNameTwoTxL" prefHeight="115.0" prefWidth="66.0" text="Client Name" wrapText="true" />
+                              <Label fx:id="clientNameTwoTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="registerTwoTable" prefHeight="230.0" prefWidth="200.0">
+                                          <TableView fx:id="registerTwoTable" disable="true" prefHeight="230.0" prefWidth="200.0">
                                             <columns>
                                               <TableColumn prefWidth="75.0" text="Book name" />
                                               <TableColumn prefWidth="75.0" text="price" />
@@ -85,7 +85,7 @@
                                     </AnchorPane>
                                 </content>
                               </ScrollPane>
-                              <Button fx:id="activeDesactiveRTwo" mnemonicParsing="false" prefHeight="68.0" prefWidth="54.0" text="toggle active" wrapText="true" />
+                              <Button fx:id="RTwoButton" mnemonicParsing="false" onAction="#activeDesactiveRTwo" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -99,12 +99,12 @@
                         <Separator prefWidth="200.0" />
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
-                              <Label fx:id="clientNameThreeTxL" prefHeight="115.0" prefWidth="66.0" text="Client Name" wrapText="true" />
+                              <Label fx:id="clientNameThreeTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="registerThreeTable" prefHeight="230.0" prefWidth="200.0">
+                                          <TableView fx:id="registerThreeTable" disable="true" prefHeight="230.0" prefWidth="200.0">
                                              <columns>
                                                 <TableColumn prefWidth="75.0" text="Book name" />
                                                 <TableColumn prefWidth="75.0" text="price" />
@@ -117,7 +117,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="activeDesactiveRThree" mnemonicParsing="false" prefHeight="68.0" prefWidth="54.0" text="toggle active" wrapText="true" />
+                              <Button fx:id="RThreeButton" mnemonicParsing="false" onAction="#activeDesactiveRThree" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -128,12 +128,12 @@
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Label fx:id="clientNameFourTxL" prefHeight="115.0" prefWidth="66.0" text="Client Name" wrapText="true" />
+                              <Label fx:id="clientNameFourTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="registerThreeTable" prefHeight="230.0" prefWidth="200.0">
+                                          <TableView fx:id="registerFourTable" disable="true" prefHeight="230.0" prefWidth="200.0">
                                              <columns>
                                                 <TableColumn prefWidth="75.0" text="Book name" />
                                                 <TableColumn prefWidth="75.0" text="price" />
@@ -146,7 +146,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="activeDesactiveRFour" mnemonicParsing="false" prefHeight="68.0" prefWidth="54.0" text="toggle active" wrapText="true" />
+                              <Button fx:id="RFourButton" mnemonicParsing="false" onAction="#activeDesactiveRFour" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
