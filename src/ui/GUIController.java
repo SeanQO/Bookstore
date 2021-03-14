@@ -88,6 +88,31 @@ public class GUIController {
     @FXML
     private TableView<?> bookTable;
     
+    // ****** section three ******
+    @FXML
+    private Label nextClientTxL;
+
+    @FXML
+    private Label clientNameOneTxL;
+
+    @FXML
+    private TableView<?> registerOneTable;
+
+    @FXML
+    private Label clientNameTwoTxL;
+
+    @FXML
+    private TableView<?> registerTwoTable;
+
+    @FXML
+    private Label clientNameThreeTxL;
+
+    @FXML
+    private TableView<?> registerThreeTable;
+
+    @FXML
+    private Label clientNameFourTxL;
+    
     // ****** menu options actions ******
     @FXML
     void openSectionOne(ActionEvent event) {
@@ -261,6 +286,32 @@ public class GUIController {
 
     @FXML
     void searchClient(ActionEvent event) {
+
+    }
+    
+    // ****** section four pane actions ******
+    @FXML
+    void activeDesactiveRFour(ActionEvent event) {
+
+    }
+
+    @FXML
+    void activeDesactiveROne(ActionEvent event) {
+
+    }
+
+    @FXML
+    void activeDesactiveRThree(ActionEvent event) {
+
+    }
+
+    @FXML
+    void activeDesactiveRTwo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void nextStep(ActionEvent event) {
 
     }
     
