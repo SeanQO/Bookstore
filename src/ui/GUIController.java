@@ -1,8 +1,5 @@
 package ui;
 import java.io.IOException;
-
-import org.omg.CORBA.INITIALIZE;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -147,6 +144,8 @@ public class GUIController {
     
 	private Bookstore bookS;
 	
+	private final String bOOKSFILE = "data/bookList.csv";
+	
 	public GUIController() {
 		bookS = null;
 	}
@@ -163,16 +162,30 @@ public class GUIController {
 	
 		// *  fill tables *
     private void updateAllBooksTable() {
-    	ObservableList<Book> observableList;
-    	observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
-    	System.out.println("Books available list --> " + bookS.getBooksAvailable());
+    	try {
+    		ObservableList<Book> observableList;
+        	bookS.importDataBooksList(bOOKSFILE);
+        	observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
+        	allBooksTable.setItems(observableList);
+        	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+        	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));	
+        	
+		} catch (IOException ioException) {
+			errorLoadingBookListAlert();
+			
+		}
     	
-    	allBooksTable.setItems(observableList);
-    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
-    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));	
     }
     
     	// * Alerts setup *
+    private void errorLoadingBookListAlert() {
+    	Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Book list error.");
+		error.setHeaderText("couldn not load book list information");
+		error.setContentText("Error loading book information, please try again, "
+				+ "if the error keeps happening the list book file is ether corrupted missing.");
+		error.showAndWait();
+    }
     private void lastRegisterAlert() {
     	Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Only one register Open.");
