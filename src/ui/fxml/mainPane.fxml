@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -52,45 +51,31 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="350.0" prefWidth="280.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="280.0">
-                                 <children>
-                                    <TableView fx:id="allBooksTable" prefHeight="350.0" prefWidth="280.0">
-                                      <columns>
-                                        <TableColumn fx:id="bookName" prefWidth="75.0" text="Book name" />
-                                        <TableColumn fx:id="bookPrice" prefWidth="75.0" text="Price" />
-                                      </columns>
-                                       <columnResizePolicy>
-                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                       </columnResizePolicy>
-                                    </TableView>
-                                 </children></AnchorPane>
-                          </content>
-                        </ScrollPane>
+                        <TableView fx:id="allBooksTable" prefHeight="350.0" prefWidth="280.0">
+                          <columns>
+                            <TableColumn fx:id="bookName" prefWidth="75.0" text="Book name" />
+                            <TableColumn fx:id="bookPrice" prefWidth="75.0" text="Price" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="40.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#addBookToList" text="Add &gt;&gt;" />
                               <Button mnemonicParsing="false" onAction="#removeBookFromList" text="Remove &lt;&lt;" />
                            </children>
                         </VBox>
-                        <ScrollPane prefHeight="200.0" prefWidth="280.0">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="280.0">
-                                 <children>
-                                    <TableView fx:id="clientListTable" prefHeight="360.0" prefWidth="280.0">
-                                      <columns>
-                                        <TableColumn prefWidth="75.0" text="Book name" />
-                                        <TableColumn prefWidth="75.0" text="ISNB" />
-                                          <TableColumn prefWidth="75.0" text="Price" />
-                                      </columns>
-                                       <columnResizePolicy>
-                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                       </columnResizePolicy>
-                                    </TableView>
-                                 </children></AnchorPane>
-                           </content>
-                        </ScrollPane>
+                        <TableView fx:id="clientListTable" prefHeight="350.0" prefWidth="280.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Book name" />
+                            <TableColumn prefWidth="75.0" text="ISNB" />
+                              <TableColumn prefWidth="75.0" text="Price" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
