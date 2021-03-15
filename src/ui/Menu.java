@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-
 import model.Bookstore;
 
 public class Menu {
@@ -10,6 +9,11 @@ public class Menu {
 	
 	public Menu() {
 		
+	}
+	
+	public void startMenu() throws IOException {
+		
+		importDataBooks();
 	}
 	
 	private static void importDataBooks() throws IOException {

@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import javafx.application.Application;
@@ -15,10 +16,17 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class Main extends Application {
+	
+	public Main() {
+		
+	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		launch(args);
-  
+		
+		Menu m;
+		m = new Menu();
+		m.startMenu();
 	}
 	
 	@Override

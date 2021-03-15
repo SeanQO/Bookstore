@@ -58,8 +58,8 @@
                                  <children>
                                     <TableView fx:id="allBooksTable" prefHeight="350.0" prefWidth="280.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Book name" />
-                                        <TableColumn prefWidth="75.0" text="Price" />
+                                        <TableColumn fx:id="bookName" prefWidth="75.0" text="Book name" />
+                                        <TableColumn fx:id="bookPrice" prefWidth="75.0" text="Price" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

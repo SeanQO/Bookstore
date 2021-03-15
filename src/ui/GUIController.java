@@ -1,5 +1,8 @@
 package ui;
 import java.io.IOException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +15,23 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import model.*;
 
 public class GUIController {
+	
+	ObservableList<Book> bookList = FXCollections.observableArrayList();
+	
+	private Bookstore bookS;
+	
+	public GUIController() {
+		
+		bookS = new Bookstore();
+	}
 	
 	// ****** Panes ******
 	@FXML
@@ -43,8 +58,14 @@ public class GUIController {
     private TextField searchBookTxF;
 
     @FXML
-    private TableView<?> allBooksTable;
+    private TableView<Book> allBooksTable;
+    
+    @FXML
+    private TableColumn<Book, String> bookName;
 
+    @FXML
+    private TableColumn<Book, Double> bookPrice;
+    
     @FXML
     private TableView<?> clientListTable;
     
@@ -187,7 +208,31 @@ public class GUIController {
 		}
     	
     }
-
+    
+    //Prueba de mostrar los libros disponibles en la interfas pero aun o esta funcionando.
+    @FXML
+    public void showBookslist() throws IOException {
+    	
+    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("fxml/mainPane.fxml"));
+    	fxmlloader.setController(this);
+    	Parent window = fxmlloader.load();
+    	mainBorderPane.getChildren().clear();
+    	mainBorderPane.setCenter(window);
+    	startTableView();
+    	
+    }
+    
+    public void startTableView() {
+    	ObservableList<Book> observableList;
+    	observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
+    	
+    	allBooksTable.setItems(observableList);
+    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+    
+    	
+    }
+	
     // ****** section one actions ******
     @FXML
     void searchBook(ActionEvent event) {

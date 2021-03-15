@@ -16,6 +16,10 @@ public class Bookstore {
 		booksAvailable = new ArrayList<Book>();
 	}
 	
+	public List<Book> getBooksAvailable() {
+		return booksAvailable;
+	}
+
 	/* 
 	 * Seccion 1 donde los clientes de la libreria pueden ver el listado
 	 * de tods los libros disponibles en la tienda y ademas, puede leer
