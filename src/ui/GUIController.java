@@ -1,6 +1,8 @@
 package ui;
 import java.io.IOException;
 
+import org.omg.CORBA.INITIALIZE;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,15 +25,6 @@ import javafx.scene.control.TableColumn;
 import model.*;
 
 public class GUIController {
-	
-	ObservableList<Book> bookList = FXCollections.observableArrayList();
-	
-	private Bookstore bookS;
-	
-	public GUIController() {
-		
-		bookS = new Bookstore();
-	}
 	
 	// ****** Panes ******
 	@FXML
@@ -150,11 +143,49 @@ public class GUIController {
     @FXML
     private Button RFourButton;
     
+    // ****** model interaction ******
+    
+	private Bookstore bookS;
+	
+	public GUIController() {
+		bookS = null;
+	}
+	
+	public void initialize() {
+		if (bookS == null) {
+			bookS = new Bookstore();
+			updateAllBooksTable();
+		}
+		
+	}
+	
+	// ****** filling and setting ******
+	
+		// *  fill tables *
+    private void updateAllBooksTable() {
+    	ObservableList<Book> observableList;
+    	observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
+    	System.out.println("Books available list --> " + bookS.getBooksAvailable());
+    	
+    	allBooksTable.setItems(observableList);
+    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));	
+    }
+    
+    	// * Alerts setup *
+    private void lastRegisterAlert() {
+    	Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Only one register Open.");
+		error.setHeaderText("there is only one register available.");
+		error.setContentText("Please open al least one more register in order to close this one.");
+		error.showAndWait();
+    }
+    
     // ****** menu options actions ******
     @FXML
     void openSectionOne(ActionEvent event) {
     	mainBorderPane.setCenter(sectionOneAnchorPane);
-    	
+    	updateAllBooksTable();
     }
     
     @FXML
@@ -206,30 +237,6 @@ public class GUIController {
 		} catch (IOException ioException) {
 			// TODO: handle exception with an alert that displays the content of the error.
 		}
-    	
-    }
-    
-    //Prueba de mostrar los libros disponibles en la interfas pero aun o esta funcionando.
-    @FXML
-    public void showBookslist() throws IOException {
-    	
-    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("fxml/mainPane.fxml"));
-    	fxmlloader.setController(this);
-    	Parent window = fxmlloader.load();
-    	mainBorderPane.getChildren().clear();
-    	mainBorderPane.setCenter(window);
-    	startTableView();
-    	
-    }
-    
-    public void startTableView() {
-    	ObservableList<Book> observableList;
-    	observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
-    	
-    	allBooksTable.setItems(observableList);
-    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
-    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
-    
     	
     }
 	
@@ -496,14 +503,6 @@ public class GUIController {
 		}else {
 			openRegister(4);
 		}
-    }
-    
-    private void lastRegisterAlert() {
-    	Alert error = new Alert(AlertType.ERROR);
-		error.setTitle("Only one register Open.");
-		error.setHeaderText("there is only one register available.");
-		error.setContentText("Please open al least one more register in order to close this one.");
-		error.showAndWait();
     }
     
 }
