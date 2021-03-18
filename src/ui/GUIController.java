@@ -167,9 +167,6 @@ public class GUIController {
 		if (bookS == null) {
 			bookS = new Bookstore();
 			updateAllBooksTable();
-			addBookToListB = new Button();
-			removeBookFromListB = new Button();
-			generateISNBB = new Button();
 
 		}
 		

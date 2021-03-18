@@ -64,8 +64,8 @@
                         </TableView>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="40.0">
                            <children>
-                              <Button disable="true" mnemonicParsing="false" onAction="#addBookToList" text="Add &gt;&gt;" />
-                              <Button disable="true" mnemonicParsing="false" onAction="#removeBookFromList" text="Remove &lt;&lt;" />
+                              <Button fx:id="addBookToListB" disable="true" mnemonicParsing="false" onAction="#addBookToList" text="Add &gt;&gt;" />
+                              <Button fx:id="removeBookFromListB" disable="true" mnemonicParsing="false" onAction="#removeBookFromList" text="Remove &lt;&lt;" />
                            </children>
                         </VBox>
                         <BorderPane fx:id="dualPaneSectionOne" prefHeight="200.0" prefWidth="200.0">
@@ -146,7 +146,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0">
                            <children>
-                              <Button disable="true" mnemonicParsing="false" onAction="#generateISNBList" text="Generate ISBN codes" />
+                              <Button fx:id="generateISNBB" disable="true" mnemonicParsing="false" onAction="#generateISNBList" text="Generate ISBN codes" />
                            </children>
                         </VBox>
                      </children>
