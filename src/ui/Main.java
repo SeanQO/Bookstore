@@ -33,7 +33,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader fxmll = new FXMLLoader(getClass().getResource("fxml/mainPaneTest.fxml"));
+		FXMLLoader fxmll = new FXMLLoader(getClass().getResource("fxml/mainPane.fxml"));
 		fxmll.setController(gc);
 		Parent root = fxmll.load();
 		Scene scene = new Scene(root);
