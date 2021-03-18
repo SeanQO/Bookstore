@@ -17,8 +17,10 @@ import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 	
+	private GUIController gc;
+	
 	public Main() {
-		
+		gc = new GUIController();
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -31,7 +33,9 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("fxml/mainPane.fxml"));
+		FXMLLoader fxmll = new FXMLLoader(getClass().getResource("fxml/mainPaneTest.fxml"));
+		fxmll.setController(gc);
+		Parent root = fxmll.load();
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Login");

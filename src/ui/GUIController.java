@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +16,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import model.*;
 
@@ -59,15 +57,30 @@ public class GUIController {
     @FXML
     private TableView<?> clientListTable;
     
+    @FXML
+    private Button addBookToListB;
+    
+    @FXML
+    private Button generateISNBB;
+    
+    @FXML
+    private Button removeBookFromListB;
+    
     	// * section one register client *
     @FXML
-    private Button registerAndClose;
+    private Button registerClient;
     
     @FXML
     private TextField clientNameTxtF;
 
     @FXML
     private TextField idClientTxtF;
+    
+    @FXML
+    private AnchorPane registerClientAP;
+    
+    @FXML
+    private BorderPane dualPaneSectionOne;
     
     
     // ****** section two ******
@@ -154,6 +167,10 @@ public class GUIController {
 		if (bookS == null) {
 			bookS = new Bookstore();
 			updateAllBooksTable();
+			addBookToListB = new Button();
+			removeBookFromListB = new Button();
+			generateISNBB = new Button();
+
 		}
 		
 	}
@@ -174,6 +191,17 @@ public class GUIController {
 			errorLoadingBookListAlert();
 			
 		}
+    	
+    }
+    
+    @SuppressWarnings("unchecked")
+	private TableView<String> createISNBListTable() {
+    	TableView<String> tView = new TableView<>();
+    	TableColumn<String, String> nameColumn = new TableColumn<>("Book name");
+    	TableColumn<String, String> isnbColumn = new TableColumn<>("ISNB");
+    	TableColumn<String, String> priceColumn = new TableColumn<>("Price");
+    	tView.getColumns().addAll(nameColumn,isnbColumn,priceColumn);
+    	return tView; 	
     	
     }
     
@@ -254,6 +282,20 @@ public class GUIController {
     }
 	
     // ****** section one actions ******
+    
+		// * register client *
+    @FXML
+	void registerClient(ActionEvent event) {
+    	AnchorPane aPane = new AnchorPane();
+    	TableView<String> tView = new TableView<>();
+    	tView = createISNBListTable();
+    	aPane.getChildren().add(tView);
+    	dualPaneSectionOne.setCenter(aPane);
+    	addBookToListB.setDisable(false);
+    	removeBookFromListB.setDisable(false);
+    	generateISNBB.setDisable(false);
+	}
+
     @FXML
     void searchBook(ActionEvent event) {
     	System.out.println("Search book button working");
@@ -283,30 +325,10 @@ public class GUIController {
     void showReviews(ActionEvent event) {
     	System.out.println("show reviews button working");
     }
+    
     @FXML
     void generateISNBList(ActionEvent event) {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/clientRegister.fxml"));
-    		Parent registerDealerParent = fxmlLoader.load();
-
-    		Scene scene = new Scene(registerDealerParent);
-    		Stage stage = new Stage();
-    		stage.setScene(scene);
-    		stage.setTitle("Register Client");
-    		stage.setResizable(false);
-    		stage.show();
-    		
-		} catch (IOException ioException) {
-			// TODO: handle exception with an alert that displays the content of the error.
-		}
-    }
     	
-    	// * register client *
-    @FXML
-    void registerAndCodes(ActionEvent event) {
-    	Stage stage = (Stage) registerAndClose.getScene().getWindow();
-        stage.close();
-
     }
     
     // ****** section two change panes ******

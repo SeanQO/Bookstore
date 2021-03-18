@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Select section">
+               <items>
+                  <MenuItem fx:id="openSectionOne" mnemonicParsing="false" onAction="#openSectionOne" text="Section one" />
+                  <MenuItem fx:id="openSectionTwo" mnemonicParsing="false" onAction="#openSectionTwo" text="Section two" />
+                  <MenuItem fx:id="openSectionThree" mnemonicParsing="false" onAction="#openSectionThree" text="Section three" />
+                  <MenuItem fx:id="openSectionFour" mnemonicParsing="false" onAction="#openSectionFour" text="Section four" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane fx:id="sectionOneAnchorPane" prefHeight="540.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <TextField fx:id="searchBookTxF" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#searchBook" text="Search" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="allBooksTable" prefHeight="350.0" prefWidth="280.0">
+                           <columns>
+                              <TableColumn fx:id="bookName" prefWidth="75.0" text="Book name" />
+                              <TableColumn fx:id="bookPrice" prefWidth="75.0" text="Price" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="40.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" onAction="#addBookToList" text="Add &gt;&gt;" />
+                              <Button disable="true" mnemonicParsing="false" onAction="#removeBookFromList" text="Remove &lt;&lt;" />
+                           </children>
+                        </VBox>
+                        <BorderPane fx:id="dualPaneSectionOne" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <AnchorPane fx:id="registerClientAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox prefHeight="400.0" prefWidth="300.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="300.0" text="Please register in to our system before generating the ISMB codes." textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="85.0" prefWidth="300.0" spacing="20.0">
+                                             <children>
+                                                <Label prefHeight="25.0" prefWidth="60.0" text="Name:">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="clientNameTxtF" prefWidth="155.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="85.0" prefWidth="300.0" spacing="20.0">
+                                             <children>
+                                                <Label prefWidth="60.0" text="ID :">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="idClientTxtF" prefHeight="25.0" prefWidth="155.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="105.0" prefWidth="300.0" spacing="40.0">
+                                             <children>
+                                                <Button fx:id="registerClent" mnemonicParsing="false" onAction="#registerClient" text="Register">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                        </BorderPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="350.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="115.0" prefWidth="130.0" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#showFirstChapter" text="First Chapter" />
+                              <Button mnemonicParsing="false" onAction="#showReviews" text="Reviews" />
+                              <Button mnemonicParsing="false" onAction="#showRating" text="Rating" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" onAction="#generateISNBList" text="Generate ISBN codes" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
