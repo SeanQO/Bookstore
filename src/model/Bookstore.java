@@ -30,7 +30,7 @@ public class Bookstore {
 		shelving3 = new TheHashTable<>();
 	}
 	
-	public void addClient(String name, String id) {
+	public void addClient(String name, int id) {
 		Client newClient = new Client(name, id);
 		clients.add(newClient);
 		

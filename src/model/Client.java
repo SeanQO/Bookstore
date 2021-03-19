@@ -11,7 +11,7 @@ public class Client {
 	String name;
 	double timeInStore;
 
-	public Client(String name, String id) {
+	public Client(String name, int id) {
 		isnbList = new ArrayList<Integer>();
 		basket = new Stack<Book>();
 		timeInStore = 0;

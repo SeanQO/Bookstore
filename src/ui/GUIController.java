@@ -260,6 +260,15 @@ public class GUIController {
 
 	}
     
+    private void wrongFieldsAlert(String fields) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Fields are in the wrong format");
+		error.setHeaderText("Some fields are not accepted");
+		error.setContentText("The ID field format needs to be numbers: " + fields);
+		error.showAndWait();
+
+	}
+    
     // ****** menu options actions ******
     @FXML
     void openSectionOne(ActionEvent event) {
@@ -336,19 +345,27 @@ public class GUIController {
     		emptyFields += "Client ID";
 		}
     	
-    	if (emptyFields.equals("")) {
-			bookS.addClient(clientName, clientId);
-			AnchorPane aPane = new AnchorPane();
-	    	aPane.getChildren().add(clientIsnbList);
-	    	dualPaneSectionOne.setCenter(aPane);
-	    	addBookToListB.setDisable(false);
-	    	removeBookFromListB.setDisable(false);
-	    	generateISNBB.setDisable(false);
-			
-		}else {
-			emptyFieldsAlert(emptyFields);
+    	try {
+    		if (emptyFields.equals("")) {
+    			bookS.addClient(clientName, Integer.parseInt(clientId));
+    			AnchorPane aPane = new AnchorPane();
+    	    	aPane.getChildren().add(clientIsnbList);
+    	    	dualPaneSectionOne.setCenter(aPane);
+    	    	addBookToListB.setDisable(false);
+    	    	removeBookFromListB.setDisable(false);
+    	    	generateISNBB.setDisable(false);
+    			
+    		}else {
+    			emptyFieldsAlert(emptyFields);
+    			
+    		}
+    		
+		} catch (NumberFormatException numberFormatException) {
+			wrongFieldsAlert("Client ID");
 			
 		}
+    	
+    	
 
 	}
     
