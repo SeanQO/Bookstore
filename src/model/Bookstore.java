@@ -13,15 +13,21 @@ import collections.TheHashTable;
 public class Bookstore {
 	
 	private List<Book> booksAvailable;
+	private List<Client> clients;
 	
-	private IHashTable<Integer, Double > shelving;
+	private IHashTable<Integer, Book > shelving1;
+	private IHashTable<Integer, Book > shelving2;
+	private IHashTable<Integer, Book > shelving3;
 	 
 	
 	
 	public Bookstore() {
 		
 		booksAvailable = new ArrayList<Book>();
-		shelving = new TheHashTable<>();
+		clients = new ArrayList<Client>();
+		shelving1 = new TheHashTable<>();
+		shelving2 = new TheHashTable<>();
+		shelving3 = new TheHashTable<>();
 	}
 	
 	public List<Book> getBooksAvailable() {
@@ -77,12 +83,24 @@ public class Bookstore {
 		String line = br.readLine();
 		
 		while (line != null) {
-			String[] split = line.split(",");			
-			Book book = new Book(split[0], split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]), Double.parseDouble(split[5]), split[6], split[7]);
-			shelving.add(Integer.parseInt(split[4]),Double.parseDouble(split[5]));
+			String[] split = line.split(",");
+			Book book = new Book(split[0], split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]),
+					Double.parseDouble(split[5]), split[6], split[7]);
+			if (book.getIsbn() >= 1000 && book.getIsbn() < 2000) {
+				shelving1.add(Integer.parseInt(split[4]), book);
+
+			}
+			if (book.getIsbn() >= 2000 && book.getIsbn() < 3000) {
+				shelving2.add(Integer.parseInt(split[4]), book);
+
+			}
+			if (book.getIsbn() >= 3000 && book.getIsbn() <= 4000) {
+				shelving3.add(Integer.parseInt(split[4]), book);
+
+			}
 			booksAvailable.add(book);
 			line = br.readLine();
-			
+
 		}
 		
 		//System.out.println(shelving.isEmpty()+"");
