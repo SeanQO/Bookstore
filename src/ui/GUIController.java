@@ -185,7 +185,7 @@ public class GUIController {
 	public void initialize() {
 		if (bookS == null) {
 			bookS = new Bookstore();
-			updateAllBooksTable();
+			loadAllBooksTable();
 
 		}
 		
@@ -194,7 +194,7 @@ public class GUIController {
 	// ****** filling and setting ******
 	
 		// *  fill tables *
-    private void updateAllBooksTable() {
+    private void loadAllBooksTable() {
     	try {
     		ObservableList<Book> observableList;
         	bookS.importDataBooksList(bOOKSFILE);
@@ -207,6 +207,13 @@ public class GUIController {
 			errorLoadingBookListAlert();
 			
 		}
+    	
+    }
+    
+    private void updateAllBooksTable(ObservableList<Book> observableList) {
+    	allBooksTable.setItems(observableList);
+    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));	
     	
     }
     
@@ -247,7 +254,7 @@ public class GUIController {
     @FXML
     void openSectionOne(ActionEvent event) {
     	mainBorderPane.setCenter(sectionOneAnchorPane);
-    	updateAllBooksTable();
+    	loadAllBooksTable();
     }
     
     @FXML
@@ -341,7 +348,20 @@ public class GUIController {
     
     @FXML
     void removeBookFromList(ActionEvent event) {
-    	System.out.println("remove book from list button working");
+    	int selectedIndex = clientIsnbList.getSelectionModel().getSelectedIndex();
+    	
+    	if (selectedIndex >= 0) {
+    		ObservableList<Book> observableList = allBooksTable.getItems();
+        	
+        	observableList.add( clientIsnbList.getSelectionModel().getSelectedItem() );
+        	clientIsnbList.getItems().remove(selectedIndex);
+        	updateAllBooksTable(observableList);
+        	
+		}else {
+			noBookSelectedAlert();
+			
+		}
+    	
     }
     
     @FXML
