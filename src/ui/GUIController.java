@@ -66,6 +66,18 @@ public class GUIController {
     @FXML
     private Button removeBookFromListB;
     
+    @FXML
+    private TableView<Book> clientIsnbList;
+    
+    @FXML
+    private TableColumn<Book, String> bookNameList;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceList;
+    
+    @FXML
+    private TableColumn<Book, String> bookIsnbList;
+    
     	// * section one register client *
     @FXML
     private Button registerClient;
@@ -159,8 +171,15 @@ public class GUIController {
 	
 	private final String bOOKSFILE = "data/bookList.csv";
 	
+	@SuppressWarnings("unchecked")
 	public GUIController() {
 		bookS = null;
+		
+		clientIsnbList = new TableView<Book>();
+		bookNameList = new TableColumn<Book, String>("Book");
+		bookPriceList = new TableColumn<Book, Double>("Price");
+		bookIsnbList = new TableColumn<Book, String>("ISNB");
+		clientIsnbList.getColumns().addAll(bookNameList, bookPriceList, bookIsnbList);
 	}
 	
 	public void initialize() {
@@ -191,14 +210,11 @@ public class GUIController {
     	
     }
     
-    @SuppressWarnings("unchecked")
-	private TableView<String> createISNBListTable() {
-    	TableView<String> tView = new TableView<>();
-    	TableColumn<String, String> nameColumn = new TableColumn<>("Book name");
-    	TableColumn<String, String> isnbColumn = new TableColumn<>("ISNB");
-    	TableColumn<String, String> priceColumn = new TableColumn<>("Price");
-    	tView.getColumns().addAll(nameColumn,isnbColumn,priceColumn);
-    	return tView; 	
+    private void updateISNBListTable(ObservableList<Book> observableList) {
+    	clientIsnbList.setItems(observableList);
+    	bookNameList.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPriceList.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+    	bookIsnbList.setCellValueFactory(new PropertyValueFactory<Book, String>("ISNB"));
     	
     }
     
@@ -211,11 +227,19 @@ public class GUIController {
 				+ "if the error keeps happening the list book file is ether corrupted missing.");
 		error.showAndWait();
     }
+    
     private void lastRegisterAlert() {
     	Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Only one register Open.");
 		error.setHeaderText("there is only one register available.");
 		error.setContentText("Please open al least one more register in order to close this one.");
+		error.showAndWait();
+    }
+    
+    private void noBookSelectedAlert() {
+    	Alert error = new Alert(AlertType.INFORMATION);
+		error.setTitle("No book selected");
+		error.setContentText("Please select one book in order to add or remove from the lists.");
 		error.showAndWait();
     }
     
@@ -284,9 +308,7 @@ public class GUIController {
     @FXML
 	void registerClient(ActionEvent event) {
     	AnchorPane aPane = new AnchorPane();
-    	TableView<String> tView = new TableView<>();
-    	tView = createISNBListTable();
-    	aPane.getChildren().add(tView);
+    	aPane.getChildren().add(clientIsnbList);
     	dualPaneSectionOne.setCenter(aPane);
     	addBookToListB.setDisable(false);
     	removeBookFromListB.setDisable(false);
@@ -300,7 +322,21 @@ public class GUIController {
     
     @FXML
     void addBookToList(ActionEvent event) {
-    	System.out.println("add book to list button working");
+    	int selectedIndex = allBooksTable.getSelectionModel().getSelectedIndex();
+    	
+    	if (selectedIndex >= 0) {
+    		ObservableList<Book> observableList = clientIsnbList.getItems();
+        	
+        	observableList.add( allBooksTable.getSelectionModel().getSelectedItem() );
+        	allBooksTable.getItems().remove(selectedIndex);
+        	updateISNBListTable(observableList);
+        	
+		}else {
+			noBookSelectedAlert();
+			
+		}
+    	
+    	
     }
     
     @FXML
