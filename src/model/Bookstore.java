@@ -84,6 +84,9 @@ public class Bookstore {
 			line = br.readLine();
 			
 		}
+		
+		//System.out.println(shelving.isEmpty()+"");
+		//System.out.println(shelving.getSize()+"");
 	}
 	
 	
