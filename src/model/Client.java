@@ -11,39 +11,20 @@ public class Client {
 	String name;
 	double timeInStore;
 
-	public Client() {
+	public Client(String name, String id) {
 		isnbList = new ArrayList<Integer>();
 		basket = new Stack<Book>();
 		timeInStore = 0;
-		id = 0;
-		name = "";
+
 	}
-	
-	
 
 	public int getId() {
 		return id;
 	}
 
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-
 	public String getName() {
 		return name;
 	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
 
 	public ArrayList<Integer> getIsnbList() {
 		return isnbList;

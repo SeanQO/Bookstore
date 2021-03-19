@@ -1,5 +1,6 @@
 package ui;
 import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -250,6 +251,15 @@ public class GUIController {
 		error.showAndWait();
     }
     
+    private void emptyFieldsAlert(String emptyFields) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Fields are empty");
+		error.setHeaderText("Some fields are empty");
+		error.setContentText("Please fill the required fields: " + emptyFields);
+		error.showAndWait();
+
+	}
+    
     // ****** menu options actions ******
     @FXML
     void openSectionOne(ActionEvent event) {
@@ -314,13 +324,34 @@ public class GUIController {
 		// * register client *
     @FXML
 	void registerClient(ActionEvent event) {
-    	AnchorPane aPane = new AnchorPane();
-    	aPane.getChildren().add(clientIsnbList);
-    	dualPaneSectionOne.setCenter(aPane);
-    	addBookToListB.setDisable(false);
-    	removeBookFromListB.setDisable(false);
-    	generateISNBB.setDisable(false);
+    	String clientName = clientNameTxtF.getText();
+    	String clientId = idClientTxtF.getText();
+    	
+    	String emptyFields = "";
+    	if ((clientName + "").equals("") ){
+    		emptyFields += "client Name";
+    	}
+    	
+    	if ((clientId + "").equals("") ) {
+    		emptyFields += "Client ID";
+		}
+    	
+    	if (emptyFields.equals("")) {
+			bookS.addClient(clientName, clientId);
+			AnchorPane aPane = new AnchorPane();
+	    	aPane.getChildren().add(clientIsnbList);
+	    	dualPaneSectionOne.setCenter(aPane);
+	    	addBookToListB.setDisable(false);
+	    	removeBookFromListB.setDisable(false);
+	    	generateISNBB.setDisable(false);
+			
+		}else {
+			emptyFieldsAlert(emptyFields);
+			
+		}
+
 	}
+    
 
     @FXML
     void searchBook(ActionEvent event) {
@@ -329,7 +360,6 @@ public class GUIController {
     
     @FXML
     void addBookToList(ActionEvent event) {
-    	System.out.println("add book to list button working");
     	int selectedIndex = allBooksTable.getSelectionModel().getSelectedIndex();
     	
     	if (selectedIndex >= 0) {

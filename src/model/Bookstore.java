@@ -30,6 +30,16 @@ public class Bookstore {
 		shelving3 = new TheHashTable<>();
 	}
 	
+	public void addClient(String name, String id) {
+		Client newClient = new Client(name, id);
+		clients.add(newClient);
+		
+	}
+	
+	public List<Client> getClients(){
+		return clients;
+	}
+	
 	public List<Book> getBooksAvailable() {
 		return booksAvailable;
 	}
