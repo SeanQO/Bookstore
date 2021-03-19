@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +16,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import model.*;
 
@@ -59,15 +57,42 @@ public class GUIController {
     @FXML
     private TableView<?> clientListTable;
     
+    @FXML
+    private Button addBookToListB;
+    
+    @FXML
+    private Button generateISNBB;
+    
+    @FXML
+    private Button removeBookFromListB;
+    
+    @FXML
+    private TableView<Book> clientIsnbList;
+    
+    @FXML
+    private TableColumn<Book, String> bookNameList;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceList;
+    
+    @FXML
+    private TableColumn<Book, String> bookIsnbList;
+    
     	// * section one register client *
     @FXML
-    private Button registerAndClose;
+    private Button registerClient;
     
     @FXML
     private TextField clientNameTxtF;
 
     @FXML
     private TextField idClientTxtF;
+    
+    @FXML
+    private AnchorPane registerClientAP;
+    
+    @FXML
+    private BorderPane dualPaneSectionOne;
     
     
     // ****** section two ******
@@ -146,14 +171,22 @@ public class GUIController {
 	
 	private final String bOOKSFILE = "data/bookList.csv";
 	
+	@SuppressWarnings("unchecked")
 	public GUIController() {
 		bookS = null;
+		
+		clientIsnbList = new TableView<Book>();
+		bookNameList = new TableColumn<Book, String>("Book");
+		bookPriceList = new TableColumn<Book, Double>("Price");
+		bookIsnbList = new TableColumn<Book, String>("ISNB");
+		clientIsnbList.getColumns().addAll(bookNameList, bookPriceList, bookIsnbList);
 	}
 	
 	public void initialize() {
 		if (bookS == null) {
 			bookS = new Bookstore();
-			updateAllBooksTable();
+			loadAllBooksTable();
+
 		}
 		
 	}
@@ -161,7 +194,7 @@ public class GUIController {
 	// ****** filling and setting ******
 	
 		// *  fill tables *
-    private void updateAllBooksTable() {
+    private void loadAllBooksTable() {
     	try {
     		ObservableList<Book> observableList;
         	bookS.importDataBooksList(bOOKSFILE);
@@ -177,6 +210,21 @@ public class GUIController {
     	
     }
     
+    private void updateAllBooksTable(ObservableList<Book> observableList) {
+    	allBooksTable.setItems(observableList);
+    	bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));	
+    	
+    }
+    
+    private void updateISNBListTable(ObservableList<Book> observableList) {
+    	clientIsnbList.setItems(observableList);
+    	bookNameList.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+    	bookPriceList.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+    	bookIsnbList.setCellValueFactory(new PropertyValueFactory<Book, String>("ISNB"));
+    	
+    }
+    
     	// * Alerts setup *
     private void errorLoadingBookListAlert() {
     	Alert error = new Alert(AlertType.ERROR);
@@ -186,6 +234,7 @@ public class GUIController {
 				+ "if the error keeps happening the list book file is ether corrupted missing.");
 		error.showAndWait();
     }
+    
     private void lastRegisterAlert() {
     	Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Only one register Open.");
@@ -194,11 +243,18 @@ public class GUIController {
 		error.showAndWait();
     }
     
+    private void noBookSelectedAlert() {
+    	Alert error = new Alert(AlertType.INFORMATION);
+		error.setTitle("No book selected");
+		error.setContentText("Please select one book in order to add or remove from the lists.");
+		error.showAndWait();
+    }
+    
     // ****** menu options actions ******
     @FXML
     void openSectionOne(ActionEvent event) {
     	mainBorderPane.setCenter(sectionOneAnchorPane);
-    	updateAllBooksTable();
+    	loadAllBooksTable();
     }
     
     @FXML
@@ -254,6 +310,18 @@ public class GUIController {
     }
 	
     // ****** section one actions ******
+    
+		// * register client *
+    @FXML
+	void registerClient(ActionEvent event) {
+    	AnchorPane aPane = new AnchorPane();
+    	aPane.getChildren().add(clientIsnbList);
+    	dualPaneSectionOne.setCenter(aPane);
+    	addBookToListB.setDisable(false);
+    	removeBookFromListB.setDisable(false);
+    	generateISNBB.setDisable(false);
+	}
+
     @FXML
     void searchBook(ActionEvent event) {
     	System.out.println("Search book button working");
@@ -262,12 +330,39 @@ public class GUIController {
     @FXML
     void addBookToList(ActionEvent event) {
     	System.out.println("add book to list button working");
+    	int selectedIndex = allBooksTable.getSelectionModel().getSelectedIndex();
+    	
+    	if (selectedIndex >= 0) {
+    		ObservableList<Book> observableList = clientIsnbList.getItems();
+        	
+        	observableList.add( allBooksTable.getSelectionModel().getSelectedItem() );
+        	allBooksTable.getItems().remove(selectedIndex);
+        	updateISNBListTable(observableList);
+        	
+		}else {
+			noBookSelectedAlert();
+			
+		}
+    	
     	
     }
     
     @FXML
     void removeBookFromList(ActionEvent event) {
-    	System.out.println("remove book from list button working");
+    	int selectedIndex = clientIsnbList.getSelectionModel().getSelectedIndex();
+    	
+    	if (selectedIndex >= 0) {
+    		ObservableList<Book> observableList = allBooksTable.getItems();
+        	
+        	observableList.add( clientIsnbList.getSelectionModel().getSelectedItem() );
+        	clientIsnbList.getItems().remove(selectedIndex);
+        	updateAllBooksTable(observableList);
+        	
+		}else {
+			noBookSelectedAlert();
+			
+		}
+    	
     }
     
     @FXML
@@ -284,30 +379,10 @@ public class GUIController {
     void showReviews(ActionEvent event) {
     	System.out.println("show reviews button working");
     }
+    
     @FXML
     void generateISNBList(ActionEvent event) {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/clientRegister.fxml"));
-    		Parent registerDealerParent = fxmlLoader.load();
-
-    		Scene scene = new Scene(registerDealerParent);
-    		Stage stage = new Stage();
-    		stage.setScene(scene);
-    		stage.setTitle("Register Client");
-    		stage.setResizable(false);
-    		stage.show();
-    		
-		} catch (IOException ioException) {
-			// TODO: handle exception with an alert that displays the content of the error.
-		}
-    }
     	
-    	// * register client *
-    @FXML
-    void registerAndCodes(ActionEvent event) {
-    	Stage stage = (Stage) registerAndClose.getScene().getWindow();
-        stage.close();
-
     }
     
     // ****** section two change panes ******
