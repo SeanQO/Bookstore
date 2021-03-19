@@ -7,13 +7,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import collections.IHashTable;
+import collections.TheHashTable;
+
 public class Bookstore {
 	
 	private List<Book> booksAvailable;
 	
+	private IHashTable<Integer, Double > shelving;
+	 
+	
+	
 	public Bookstore() {
 		
 		booksAvailable = new ArrayList<Book>();
+		shelving = new TheHashTable<>();
 	}
 	
 	public List<Book> getBooksAvailable() {
@@ -71,9 +79,12 @@ public class Bookstore {
 		while (line != null) {
 			String[] split = line.split(",");			
 			Book book = new Book(split[0], split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]), Double.parseDouble(split[5]), split[6], split[7]);
+			shelving.add(Integer.parseInt(split[4]),Double.parseDouble(split[5]));
 			booksAvailable.add(book);
 			line = br.readLine();
 			
 		}
 	}
+	
+	
 }
