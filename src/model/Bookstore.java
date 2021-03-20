@@ -133,6 +133,23 @@ public class Bookstore {
 		return searched;
 	}
 	
+	public String searchLocation(int isbn) {
+		String m = "The Book is in the shelving ";
+	
+		if (isbn >= 100 && isbn < 200) {
+			m += "one and the level " + shelving1.getSlotIndex(isbn) + " .";
+			
+		}
+		if (isbn >= 200 && isbn < 300) {
+
+			m += "two and the level " + shelving2.getSlotIndex(isbn) + " .";
+		}
+		if (isbn >= 300 && isbn <= 400) {
+			m += "three and the level " + shelving3.getSlotIndex(isbn) + " .";
+		}
+		return m;
+	}
+	
 	
 	
 	
