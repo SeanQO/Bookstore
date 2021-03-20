@@ -433,11 +433,6 @@ public class GUIController {
 	}
 
 	@FXML
-	void searchBook(ActionEvent event) {
-		System.out.println("Search book button working");
-	}
-
-	@FXML
 	void addBookToList(ActionEvent event) {
 		int selectedIndex = allBooksTable.getSelectionModel().getSelectedIndex();
 
@@ -532,6 +527,7 @@ public class GUIController {
 			removeBookFromListB.setDisable(true);
 			generateISNBB.setDisable(true);
 			
+			clientIsnbList.getItems().clear();
 			
 		}else {
 			emptyIsnbListAlert();
