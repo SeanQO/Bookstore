@@ -1,6 +1,7 @@
 
 package ui;
 import java.io.IOException;
+
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -115,6 +116,15 @@ public class GUIController {
 	
 	@FXML
     private Label clientNameSTLabel;
+	
+	@FXML
+    private Button insertionB;
+
+    @FXML
+    private Button mergeB;
+
+    @FXML
+    private Button radixB;
 
 	// * second section two *
 
@@ -182,9 +192,18 @@ public class GUIController {
 	private final String BOOKSFILE = "data/bookList.csv";
 	
 	private boolean isClientSelecting;
+	
+	private boolean isClientSelectingSTwo;
+	
+	private int sectionTwoBookIndex;
+	
+	private int clientIndexInSTwo;
 
 	@SuppressWarnings("unchecked")
 	public GUIController() {
+		sectionTwoBookIndex = 0;
+		clientIndexInSTwo = 0;
+		isClientSelectingSTwo = false;
 		bookS = null;
 		isClientSelecting = false;
 		clientIsnbList = new TableView<Book>();
@@ -230,7 +249,6 @@ public class GUIController {
 	}
 
 	private void updateAllBooksTable(ObservableList<Book> observableList) {
-		allBooksTable.getItems().clear();
 		allBooksTable.setItems(observableList);
 		bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
@@ -341,19 +359,30 @@ public class GUIController {
 
 				mainBorderPane.setCenter(Pane);
 				
-				setSectionTwoMain();
-				
-				String clientName = bookS.getClients().get(bookS.getClients().size() - 1).getName();
+				if (isClientSelectingSTwo) {
+					setSectionTwoSecondary();
+					
+				}
+			
+				String clientName = bookS.getClients().get(clientIndexInSTwo).getName();
 				clientNameSTLabel.setText(clientName);
 				
 				loadIsbnSectionTwo(getBooks());
+				
+				insertionB.setDisable(false);
+				mergeB.setDisable(false);
+				radixB.setDisable(false);
 				
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
 				
 			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-				// TODO: handle exception
+				indexOutOfBoundsException.printStackTrace();
 				clientNameSTLabel.setText("No Clients registered");
+				insertionB.setDisable(true);
+				mergeB.setDisable(true);
+				radixB.setDisable(true);
+				
 				
 			}
 			
@@ -366,7 +395,7 @@ public class GUIController {
 	}
 	
 	private ObservableList<Book> getBooks(){
-		Client client = bookS.getClients().get(bookS.getClients().size() - 1);
+		Client client = bookS.getClients().get(clientIndexInSTwo);
 		ObservableList<Book> books = FXCollections.observableArrayList();
 		for (int i = 0; i < client.getIsnbList().length; i++) {
 			 books.add( bookS.searchBook(client.getIsnbList()[i]) );
@@ -582,6 +611,11 @@ public class GUIController {
 			Parent Pane = fxmlLoader.load();
 
 			sectionTwoBorderPane.setRight(Pane);
+			
+			int isbn = bookS.getClients().get(clientIndexInSTwo).getIsnbList()[sectionTwoBookIndex];
+			sectionTwoBookIndex ++;
+			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
+			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
 
 		} catch (IOException ioException) {
 			// TODO: handle exception with an alert that displays the content of the error.
@@ -595,6 +629,7 @@ public class GUIController {
 		setSectionTwoSecondary();
 		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(1);
 		loadIsbnSectionTwo(getBooks());
+		isClientSelectingSTwo = true;
 	}
 
 	@FXML
@@ -602,6 +637,7 @@ public class GUIController {
 		setSectionTwoSecondary();
 		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(2);
 		loadIsbnSectionTwo(getBooks());
+		isClientSelectingSTwo = true;
 	}
 
 	@FXML
@@ -609,17 +645,37 @@ public class GUIController {
 		setSectionTwoSecondary();
 		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(3);
 		loadIsbnSectionTwo(getBooks());
+		isClientSelectingSTwo = true;
 	}
 
 	// ****** section two main secondary pane actions ******
+	
 	@FXML
 	void nextBook(ActionEvent event) {
-		System.out.println("next book button working");
+		try {
+			int isbn = bookS.getClients().get(bookS.getClients().size() -1 ).getIsnbList()[sectionTwoBookIndex +1];
+			sectionTwoBookIndex ++;
+			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
+			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
+			
+		} catch (IndexOutOfBoundsException idBoundsException) {
+			
+		}
+		
 	}
 
 	@FXML
 	void previousBook(ActionEvent event) {
-		System.out.println("prev book button working");
+		try {
+			int isbn = bookS.getClients().get(bookS.getClients().size() -1 ).getIsnbList()[sectionTwoBookIndex -1];
+			sectionTwoBookIndex --;
+			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
+			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
+			
+		} catch (IndexOutOfBoundsException idBoundsException) {
+			
+		}
+		
 	}
 
 	// ****** section three actions******
