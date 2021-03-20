@@ -4,9 +4,11 @@ public class Queue<T> implements IQueue<T> {
 	
 	private QElement<T> first;
 	private QElement<T> last;
+	public int size;
 	
 	public Queue() {
 		
+		size = 0;
 	}
 
 	public boolean isEmpty() {
@@ -24,6 +26,7 @@ public class Queue<T> implements IQueue<T> {
 			last.setNextElement(element);
 			last = element;
 		}
+		size = size+1;
 	}
 
 	public QElement<T> front() {
@@ -36,4 +39,11 @@ public class Queue<T> implements IQueue<T> {
 		return element;
 	}
 
+	public QElement<T> getLast() {
+        return last;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }
