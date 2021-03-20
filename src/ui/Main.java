@@ -25,10 +25,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws IOException {
 		launch(args);
-		
-		Menu m;
-		m = new Menu();
-		m.startMenu();
 	}
 	
 	@Override

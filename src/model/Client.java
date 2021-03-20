@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -12,7 +11,7 @@ public class Client {
 	double timeInStore;
 
 	public Client(String name, int id) {
-		
+		isnbList = new int[0];
 		basket = new Stack<Book>();
 		timeInStore = 0;
 		this.id = id;
@@ -31,6 +30,21 @@ public class Client {
 	public int[] getIsnbList() {
 		return isnbList;
 	}
+	
+	public void addIsbn(int isbn) {
+		int n = isnbList.length;
+		int newArr[] = new int[n+1];  
+		int value = isbn;  
+
+		for(int i = 0; i<n; i++) {  
+		newArr[i] = isnbList[i];  
+		
+		}  
+		
+		newArr[n] = value;  
+		
+		isnbList = newArr;
+	}
 
 	public Stack<Book> getBasket() {
 		return basket;
@@ -43,10 +57,6 @@ public class Client {
 	public void addBookToBasket(Book book) {
 		basket.add(book);
 
-	}
-
-	public void initializeIsbnList(int length) {
-		isnbList = new int[length];
 	}
 
 	public void sortIsnbList(int sortingMethod) {

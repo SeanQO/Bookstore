@@ -179,7 +179,7 @@ public class GUIController {
 
 	private Bookstore bookS;
 
-	private final String bOOKSFILE = "data/bookList.csv";
+	private final String BOOKSFILE = "data/bookList.csv";
 	
 	private boolean isClientSelecting;
 
@@ -195,16 +195,23 @@ public class GUIController {
 		
 		sTwoBookTable = new TableView<Book>();
 		BookNameSectionTwo = new TableColumn<Book, String>("Book");
-		IsbnSectionTwo = new TableColumn<Book, Integer>("isbn");
-		
-				
+		IsbnSectionTwo = new TableColumn<Book, Integer>("isbn");	
+					
 	}
 
 	public void initialize() {
 		if (bookS == null) {
 			bookS = new Bookstore();
-			loadAllBooksTable();
+			try {
+				
+				bookS.importDataBooksList(BOOKSFILE);
 
+			} catch (IOException ioException) {
+				errorLoadingBookListAlert();
+
+			}
+			loadAllBooksTable();
+			
 		}
 
 	}
@@ -213,22 +220,17 @@ public class GUIController {
 
 	// * fill tables *
 	private void loadAllBooksTable() {
-		try {
-			ObservableList<Book> observableList;
-			bookS.importDataBooksList(bOOKSFILE);
-			observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
-			allBooksTable.setItems(observableList);
-			bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
-			bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
-
-		} catch (IOException ioException) {
-			errorLoadingBookListAlert();
-
-		}
+		ObservableList<Book> observableList;
+		observableList = FXCollections.observableArrayList(bookS.getBooksAvailable());
+		allBooksTable.getItems().clear();
+		allBooksTable.setItems(observableList);
+		bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 
 	}
 
 	private void updateAllBooksTable(ObservableList<Book> observableList) {
+		allBooksTable.getItems().clear();
 		allBooksTable.setItems(observableList);
 		bookName.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		bookPrice.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
@@ -366,8 +368,8 @@ public class GUIController {
 	private ObservableList<Book> getBooks(){
 		Client client = bookS.getClients().get(bookS.getClients().size() - 1);
 		ObservableList<Book> books = FXCollections.observableArrayList();
-		for (int i = 0; i < client.getIsnbList().size(); i++) {
-			 books.add( bookS.searchBook(client.getIsnbList().get(i)) );
+		for (int i = 0; i < client.getIsnbList().length; i++) {
+			 books.add( bookS.searchBook(client.getIsnbList()[i]) );
 			
 		}
 		
@@ -539,7 +541,7 @@ public class GUIController {
 			Iterator<Book> iterator = clientIsnbList.getItems().iterator();
 	    	while (iterator.hasNext()) {
 				Book b = (Book) iterator.next();
-				bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList().add(b.getIsbn());
+				bookS.getClients().get(bookS.getClients().size() - 1).addIsbn(b.getIsbn());
 			}
 
 	    	isnbListAddedAlert();
@@ -589,17 +591,17 @@ public class GUIController {
 
 	// ****** section two main pane actions ******
 	@FXML
-	void oneSortList(ActionEvent event) {
+	void insertionSort(ActionEvent event) {
 		setSectionTwoSecondary();
 	}
 
 	@FXML
-	void threeSortList(ActionEvent event) {
+	void mergeSort(ActionEvent event) {
 		setSectionTwoSecondary();
 	}
 
 	@FXML
-	void twoSortList(ActionEvent event) {
+	void radixSort(ActionEvent event) {
 		setSectionTwoSecondary();
 	}
 

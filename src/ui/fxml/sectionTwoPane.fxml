@@ -51,9 +51,9 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#oneSortList" text="Algorithm One" />
-                        <Button mnemonicParsing="false" onAction="#twoSortList" text="Algorithm Two" />
-                        <Button mnemonicParsing="false" onAction="#threeSortList" text="Algorithm Three" />
+                        <Button mnemonicParsing="false" onAction="#insertionSort" text="Insertion Sort" />
+                        <Button mnemonicParsing="false" onAction="#mergeSort" text="Merge Sort" />
+                        <Button mnemonicParsing="false" onAction="#radixSort" text="Radix Sort" />
                      </children>
                   </HBox>
                </children>
