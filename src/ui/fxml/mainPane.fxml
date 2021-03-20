@@ -140,7 +140,6 @@
                         <VBox alignment="CENTER" prefHeight="115.0" prefWidth="130.0" spacing="20.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#showFirstChapter" text="First Chapter" />
-                              <Button mnemonicParsing="false" onAction="#showReviews" text="Reviews" />
                               <Button mnemonicParsing="false" onAction="#showRating" text="Rating" />
                            </children>
                         </VBox>
