@@ -133,6 +133,9 @@ public class GUIController {
 
 	@FXML
 	private Label bookLocationTxF;
+	
+	@FXML
+    private Button finishButton;
 
 	// ****** section three ******
 
@@ -348,7 +351,11 @@ public class GUIController {
 
 	@FXML
 	void openSectionTwo(ActionEvent event) {
-		
+		openSectiontwo();
+
+	}
+	
+	private void openSectiontwo() {
 		if (!isClientSelecting) {
 			try {
 				
@@ -377,8 +384,7 @@ public class GUIController {
 				// TODO: handle exception with an alert that displays the content of the error.
 				
 			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-				indexOutOfBoundsException.printStackTrace();
-				clientNameSTLabel.setText("No Clients registered");
+				clientNameSTLabel.setText("No Clients In this section");
 				insertionB.setDisable(true);
 				mergeB.setDisable(true);
 				radixB.setDisable(true);
@@ -390,8 +396,6 @@ public class GUIController {
 			clientIsSelectingAlert();
 			
 		}
-		
-
 	}
 	
 	private ObservableList<Book> getBooks(){
@@ -659,6 +663,7 @@ public class GUIController {
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
 			
 		} catch (IndexOutOfBoundsException idBoundsException) {
+			finishButton.setDisable(false);
 			
 		}
 		
@@ -677,6 +682,15 @@ public class GUIController {
 		}
 		
 	}
+	
+    @FXML
+    void finishSectionTwo(ActionEvent event) {
+    	isClientSelectingSTwo = false;
+    	clientIndexInSTwo ++;
+    	sectionTwoBookIndex = 0;
+    	openSectiontwo();
+    	
+    }
 
 	// ****** section three actions******
 
