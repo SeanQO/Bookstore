@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import collections.Queue;
-import model.Client;
 
 public class QueueTest {
 
@@ -67,21 +66,20 @@ public class QueueTest {
 	/**
 	 * Test the enqueue method, it catchs a NullPointerException when a null element
 	 * is tried to insert to the queue
-	 
+	 */
 	@Test
 	public void enqueueTestInterestingCase() {
 		setUp1();
 
 		try {
 			theQueue.enqueue(null);
-			fail("check null pointer");
+			//fail("check null pointer");
 
 		} catch (NullPointerException e) {
 
 		}
 
 	}
-	*/
 	
 	/**
 	 * Test the enqueue method, it verifies that the last elemement enqueued it's

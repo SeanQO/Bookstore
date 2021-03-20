@@ -26,7 +26,8 @@ public class Queue<T> implements IQueue<T> {
 			last.setNextElement(element);
 			last = element;
 		}
-		size = size+1;
+		
+		size = size + 1;
 	}
 
 	public QElement<T> front() {
