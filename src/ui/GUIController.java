@@ -1,6 +1,5 @@
 
 package ui;
-
 import java.io.IOException;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
@@ -79,7 +78,7 @@ public class GUIController {
 	private TableColumn<Book, Double> bookPriceList;
 
 	@FXML
-	private TableColumn<Book, String> bookIsnbList;
+	private TableColumn<Book, Integer> bookIsnbList;
 
 	// * section one register client *
 	@FXML
@@ -100,7 +99,13 @@ public class GUIController {
 	// ****** section two ******
 
 	@FXML
-	private TableView<?> sTwoBookTable;
+	private TableView<Book> sTwoBookTable;
+	
+	@FXML
+    private TableColumn<Book, String> BookNameSectionTwo;
+
+    @FXML
+    private TableColumn<Book, Integer> IsbnSectionTwo;
 
 	@FXML
 	private BorderPane sectionTwoBorderPane;
@@ -185,8 +190,14 @@ public class GUIController {
 		clientIsnbList = new TableView<Book>();
 		bookNameList = new TableColumn<Book, String>("Book");
 		bookPriceList = new TableColumn<Book, Double>("Price");
-		bookIsnbList = new TableColumn<Book, String>("ISNB");
+		bookIsnbList = new TableColumn<Book, Integer>("isbn");
 		clientIsnbList.getColumns().addAll(bookNameList, bookPriceList, bookIsnbList);
+		
+		sTwoBookTable = new TableView<Book>();
+		BookNameSectionTwo = new TableColumn<Book, String>("Book");
+		IsbnSectionTwo = new TableColumn<Book, Integer>("isbn");
+		
+				
 	}
 
 	public void initialize() {
@@ -228,8 +239,14 @@ public class GUIController {
 		clientIsnbList.setItems(observableList);
 		bookNameList.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		bookPriceList.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
-		bookIsnbList.setCellValueFactory(new PropertyValueFactory<Book, String>("ISNB"));
+		bookIsnbList.setCellValueFactory(new PropertyValueFactory<Book, Integer>("isbn"));
 
+	}
+	
+	private void loadIsbnSectionTwo(ObservableList<Book> observableList) {
+		sTwoBookTable.setItems(observableList);
+		BookNameSectionTwo.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		IsbnSectionTwo.setCellValueFactory(new PropertyValueFactory<Book, Integer>("isbn"));
 	}
 
 	// * Alerts setup *
@@ -327,6 +344,8 @@ public class GUIController {
 				String clientName = bookS.getClients().get(bookS.getClients().size() - 1).getName();
 				clientNameSTLabel.setText(clientName);
 				
+				loadIsbnSectionTwo(getBooks());
+				
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
 				
@@ -343,6 +362,17 @@ public class GUIController {
 		
 
 	}
+	
+	private ObservableList<Book> getBooks(){
+		Client client = bookS.getClients().get(bookS.getClients().size() - 1);
+		ObservableList<Book> books = FXCollections.observableArrayList();
+		for (int i = 0; i < client.getIsnbList().size(); i++) {
+			 books.add( bookS.searchBook(client.getIsnbList().get(i)) );
+			
+		}
+		
+		return books;
+	} 
 
 	@FXML
 	void openSectionThree(ActionEvent event) {

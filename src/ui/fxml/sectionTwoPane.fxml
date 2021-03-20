@@ -25,8 +25,8 @@
             </HBox>
             <TableView fx:id="sTwoBookTable" layoutX="50.0" layoutY="105.0" prefHeight="390.0" prefWidth="280.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Book name" />
-                <TableColumn prefWidth="75.0" text="ISNB" />
+                <TableColumn fx:id="BookNameSectionTwo" prefWidth="75.0" text="Book name" />
+                <TableColumn fx:id="IsbnSectionTwo" prefWidth="75.0" text="ISNB" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
