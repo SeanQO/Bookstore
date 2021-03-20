@@ -3,9 +3,11 @@ package collections;
 public class Stack<T> implements IStack<T> {
 	
 	private SElement <T> top;
+	public int size;
 	
 	public Stack() {
 		
+		size = 0;
 	}
 
 	public boolean isEmpty() {
@@ -23,6 +25,8 @@ public class Stack<T> implements IStack<T> {
 			top = element;
 		}
 		
+		size = size + 1;
+		
 	}
 
 	public SElement<T> top() {
@@ -39,5 +43,12 @@ public class Stack<T> implements IStack<T> {
 		}
 		return null;
 	}
-
+	
+	public SElement<T> getTop() {
+        return top;
+    }
+	
+	public int getSize() {
+		return size;
+	}
 }
