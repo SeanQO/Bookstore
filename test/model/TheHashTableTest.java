@@ -22,7 +22,8 @@ public class TheHashTableTest {
 		hashTable = new TheHashTable<Integer, Book>();
 
 		hashTable.add(2459, new Book("Angeles y Demonios", "Dan Brown", "Planeta", 397, 2459, 26.14, "Capitulo1. El grupo de los Iluminatti ataca de nuevo.", "No hay criticas aun."));
-		hashTable.add(2658, new Book("Un Dolor Imperial", "Peter Van Houten", "Planeta", 324, 2658, 25.00, "Capitulo1. Tengo cancer desde lo 12 aï¿½osï¿½", "Nohay criticas aun."));
+		hashTable.add(2658, new Book("Un Dolor Imperial", "Peter Van Houten", "Planeta", 324, 2658, 25.00, "Capitulo1. Tengo cancer desde lo 12 años…", "Nohay criticas aun."));
+		hashTable.add(3643, new Book("La Biblia de los Caidos", "Fernando Trujillo", "Planeta", 319, 3643, 21.50, "Capitulo1. La iglesia nos ha mentido desde el principio", "Es un libro que atenta contra la dotrina sagrada."));
 	}
 	
 	/**
