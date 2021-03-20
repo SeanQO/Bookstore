@@ -593,16 +593,22 @@ public class GUIController {
 	@FXML
 	void insertionSort(ActionEvent event) {
 		setSectionTwoSecondary();
+		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(1);
+		loadIsbnSectionTwo(getBooks());
 	}
 
 	@FXML
 	void mergeSort(ActionEvent event) {
 		setSectionTwoSecondary();
+		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(2);
+		loadIsbnSectionTwo(getBooks());
 	}
 
 	@FXML
 	void radixSort(ActionEvent event) {
 		setSectionTwoSecondary();
+		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(3);
+		loadIsbnSectionTwo(getBooks());
 	}
 
 	// ****** section two main secondary pane actions ******
