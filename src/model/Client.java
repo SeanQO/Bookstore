@@ -196,7 +196,7 @@ public class Client {
     }
     
    /*
-    * public ArrayList<Book> booksToArray(){
+    public ArrayList<Book> booksToArray(){
 	   ArrayList<Book> booksArray = new ArrayList<>();
 		Stack<Book> tempBasket = new Stack<Book>();
 		while(!tempBasket.isEmpty()) {
@@ -208,6 +208,6 @@ public class Client {
 	   
 	   
    }
-    */
+   */ 
 
 }
