@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.StageStyle;
 import javafx.scene.control.TableColumn;
 import model.*;
 
@@ -414,8 +415,12 @@ public class GUIController {
     
     @FXML
     void showFirstChapter(ActionEvent event) {
-    	System.out.println("show first chapter button working");
-    	
+    	Alert windowInformation = new Alert(AlertType.INFORMATION);
+    	windowInformation.setTitle("First Chapter");
+    	windowInformation.setHeaderText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+    	windowInformation.setContentText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getReview());
+    	windowInformation.showAndWait();
+
     }
 
     @FXML
@@ -425,7 +430,6 @@ public class GUIController {
 
     @FXML
     void showReviews(ActionEvent event) {
-    	System.out.println("show reviews button working");
     	Alert alertReview = new Alert(AlertType.INFORMATION);
     	alertReview.setTitle("Review");
     	alertReview.setHeaderText("Review of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
