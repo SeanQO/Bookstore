@@ -62,13 +62,13 @@ public class Client {
 	public void sortIsnbList(int sortingMethod) {
 		switch (sortingMethod) {
 		case 1:
-			insertionSortImperative(null);
+			insertionSortImperative(isnbList);
 			break;
 		case 2:
-			mergeSort(null, sortingMethod);
+			mergeSort(isnbList, sortingMethod);
 			break;
 		case 3:
-			radixSort(null);
+			radixSort(isnbList);
 			break;
 
 		}
@@ -90,6 +90,8 @@ public class Client {
             input[j + 1] = key;
         }
     }
+	
+	
 	
 	/*
 	public static int[] insertionSort(int[] nums) {
