@@ -71,8 +71,8 @@ public class TheHashTable<K, V> implements IHashTable<K, V> {
 	@SuppressWarnings("unchecked")
 	public void add(K key, V value) {
 
-		//int index = getSlotIndex(key);
-		int index = 400;
+		int index = getSlotIndex(key);
+		//int index = 400;
 
 		HT_Element<K, V> f = slots[index];
 		HT_Element<K, V> toAdd = new HT_Element<K, V>(key, value);

@@ -15,15 +15,15 @@ public class TheHashTableTest {
 
 	public void setUp2() {
 		hashTable = new TheHashTable<Integer, Book>();
-		hashTable.add(1234, new Book("El Codigo DaVinci", "Dan Brown", "Panamericana", 369, 1234, 24.75, "Capitulo 1. El linaje de Jesus y Maria Magdalena.", "No hay criticas aun."));
+		hashTable.add(123, new Book("El Codigo DaVinci", "Dan Brown", "Panamericana", 369, 123, 24.75, "Capitulo 1. El linaje de Jesus y Maria Magdalena.", "No hay criticas aun."));
 	}
 
 	public void setUp3() {
 		hashTable = new TheHashTable<Integer, Book>();
 
-		hashTable.add(2459, new Book("Angeles y Demonios", "Dan Brown", "Planeta", 397, 2459, 26.14, "Capitulo1. El grupo de los Iluminatti ataca de nuevo.", "No hay criticas aun."));
-		hashTable.add(2658, new Book("Un Dolor Imperial", "Peter Van Houten", "Planeta", 324, 2658, 25.00, "Capitulo1. Tengo cancer desde lo 12 años…", "Nohay criticas aun."));
-		hashTable.add(3643, new Book("La Biblia de los Caidos", "Fernando Trujillo", "Planeta", 319, 3643, 21.50, "Capitulo1. La iglesia nos ha mentido desde el principio", "Es un libro que atenta contra la dotrina sagrada."));
+		hashTable.add(245, new Book("Angeles y Demonios", "Dan Brown", "Planeta", 397, 245, 26.14, "Capitulo1. El grupo de los Iluminatti ataca de nuevo.", "No hay criticas aun."));
+		hashTable.add(265, new Book("Un Dolor Imperial", "Peter Van Houten", "Planeta", 324, 265, 25.00, "Capitulo1. Tengo cancer desde lo 12 años…", "Nohay criticas aun."));
+		hashTable.add(364, new Book("La Biblia de los Caidos", "Fernando Trujillo", "Planeta", 319, 364, 21.50, "Capitulo1. La iglesia nos ha mentido desde el principio", "Es un libro que atenta contra la dotrina sagrada."));
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class TheHashTableTest {
 	@Test
 	public void getTest() {
 		setUp3();
-		assertEquals("Angeles y Demonios", hashTable.get(2459).getName());
+		assertEquals("Angeles y Demonios", hashTable.get(245).getName());
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class TheHashTableTest {
 	@Test
 	public void removeTestBaseCase() {
 		setUp3();
-		Book removed = hashTable.remove(3643);
+		Book removed = hashTable.remove(364);
 		assertEquals("La Biblia de los Caidos", removed.getName());
 	}
 	
@@ -85,16 +85,14 @@ public class TheHashTableTest {
 	@Test
 	public void addTest() {
 		setUp3();
-
-		hashTable.add(1125, new Book("La Ciudad de los Prodigios", "Claudio Stassi", "Alfaguara", 247, 1125, 16.40, "Capitulo1. En aquella ciudad todos tenian un don especial.", "No hay criticas aun."));
-
-		assertEquals("La Ciudad de los Prodigios", hashTable.get(1125).getName());
+		hashTable.add(112, new Book("La Ciudad de los Prodigios", "Claudio Stassi", "Alfaguara", 247, 112, 16.40, "Capitulo1. En aquella ciudad todos tenian un don especial.", "No hay criticas aun."));
+		assertEquals("La Ciudad de los Prodigios", hashTable.get(112).getName());
 	}
 	
 	@Test
 	public void addTestInterestingCase() {
 		setUp1();
-		hashTable.add(1125, new Book("La Ciudad de los Prodigios", "Claudio Stassi", "Alfaguara", 247, 1125, 16.40, "Capitulo1. En aquella ciudad todos tenian un don especial.", "No hay criticas aun."));
+		hashTable.add(112, new Book("La Ciudad de los Prodigios", "Claudio Stassi", "Alfaguara", 247, 112, 16.40, "Capitulo1. En aquella ciudad todos tenian un don especial.", "No hay criticas aun."));
 		assertEquals(false, hashTable.isEmpty());
 	}
 }
