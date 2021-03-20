@@ -1,5 +1,6 @@
 package ui;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.StageStyle;
 import javafx.scene.control.TableColumn;
 import model.*;
 
@@ -414,13 +414,8 @@ public class GUIController {
     }
     
     @FXML
-    void showFirstChapter(ActionEvent event) {
-    	Alert windowInformation = new Alert(AlertType.INFORMATION);
-    	windowInformation.setTitle("First Chapter");
-    	windowInformation.setHeaderText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getName());
-    	windowInformation.setContentText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getReview());
-    	windowInformation.showAndWait();
-
+    void showFirstChapter(ActionEvent event) {  
+    	System.out.println("show first chapter button working");
     }
 
     @FXML
@@ -430,16 +425,16 @@ public class GUIController {
 
     @FXML
     void showReviews(ActionEvent event) {
-    	Alert alertReview = new Alert(AlertType.INFORMATION);
-    	alertReview.setTitle("Review");
-    	alertReview.setHeaderText("Review of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
-    	alertReview.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
-
-    	alertReview.showAndWait();
+    	System.out.println("show reviews button working");
     }
     
     @FXML
     void generateISNBList(ActionEvent event) {
+    	Iterator<Book> iterator = clientIsnbList.getItems().iterator();
+    	while (iterator.hasNext()) {
+			Book b = (Book) iterator.next();
+			bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList().add(b.getIsbn());
+		}
     	
     }
     
