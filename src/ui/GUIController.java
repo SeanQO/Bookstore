@@ -3,7 +3,6 @@ package ui;
 
 import java.io.IOException;
 import java.util.Iterator;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -173,11 +172,13 @@ public class GUIController {
 	private Bookstore bookS;
 
 	private final String bOOKSFILE = "data/bookList.csv";
+	
+	private boolean isClientSelecting;
 
 	@SuppressWarnings("unchecked")
 	public GUIController() {
 		bookS = null;
-
+		isClientSelecting = false;
 		clientIsnbList = new TableView<Book>();
 		bookNameList = new TableColumn<Book, String>("Book");
 		bookPriceList = new TableColumn<Book, Double>("Price");
@@ -289,8 +290,16 @@ public class GUIController {
 	}
 	
 	
+	private void clientIsSelectingAlert() {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("The client is selecting ISNB");
+		error.setContentText("Please finish selecting ISNB codes to change section.");
+		error.showAndWait();
+		
+	}
 
 	// ****** menu options actions ******
+	
 	@FXML
 	void openSectionOne(ActionEvent event) {
 		mainBorderPane.setCenter(sectionOneAnchorPane);
@@ -299,53 +308,73 @@ public class GUIController {
 
 	@FXML
 	void openSectionTwo(ActionEvent event) {
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoPane.fxml"));
-			fxmlLoader.setController(this);
+		if (!isClientSelecting) {
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoPane.fxml"));
+				fxmlLoader.setController(this);
 
-			Parent Pane = fxmlLoader.load();
+				Parent Pane = fxmlLoader.load();
 
-			mainBorderPane.setCenter(Pane);
+				mainBorderPane.setCenter(Pane);
 
-			setSectionTwoMain();
+				setSectionTwoMain();
 
-		} catch (IOException ioException) {
-			// TODO: handle exception with an alert that displays the content of the error.
+			} catch (IOException ioException) {
+				// TODO: handle exception with an alert that displays the content of the error.
+			}
+			
+		}else {
+			clientIsSelectingAlert();
+			
 		}
+		
 
 	}
 
 	@FXML
 	void openSectionThree(ActionEvent event) {
+		if (!isClientSelecting) {
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
+				fxmlLoader.setController(this);
 
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionThreePane.fxml"));
-			fxmlLoader.setController(this);
+				Parent Pane = fxmlLoader.load();
 
-			Parent Pane = fxmlLoader.load();
+				mainBorderPane.setCenter(Pane);
 
-			mainBorderPane.setCenter(Pane);
-
-		} catch (IOException ioException) {
-			// TODO: handle exception with an alert that displays the content of the error.
+			} catch (IOException ioException) {
+				// TODO: handle exception with an alert that displays the content of the error.
+			}
+			
+		}else {
+			clientIsSelectingAlert();
+			
 		}
+
+		
 
 	}
 
 	@FXML
 	void openSectionFour(ActionEvent event) {
+		if (!isClientSelecting) {
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionFourPane.fxml"));
+				fxmlLoader.setController(this);
 
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionFourPane.fxml"));
-			fxmlLoader.setController(this);
+				Parent Pane = fxmlLoader.load();
 
-			Parent Pane = fxmlLoader.load();
+				mainBorderPane.setCenter(Pane);
 
-			mainBorderPane.setCenter(Pane);
-
-		} catch (IOException ioException) {
-			// TODO: handle exception with an alert that displays the content of the error.
+			} catch (IOException ioException) {
+				// TODO: handle exception with an alert that displays the content of the error.
+			}
+			
+		}else {
+			clientIsSelectingAlert();
+			
 		}
+		
 
 	}
 
@@ -375,6 +404,8 @@ public class GUIController {
 				addBookToListB.setDisable(false);
 				removeBookFromListB.setDisable(false);
 				generateISNBB.setDisable(false);
+				
+				isClientSelecting = true;
 
 			} else {
 				emptyFieldsAlert(emptyFields);
@@ -481,7 +512,14 @@ public class GUIController {
 	    	
 			clientNameTxtF.setText("");;
 			idClientTxtF.setText("");
+			
+			isClientSelecting = false;
 	    	
+			addBookToListB.setDisable(true);
+			removeBookFromListB.setDisable(true);
+			generateISNBB.setDisable(true);
+			
+			
 		}else {
 			emptyIsnbListAlert();
 		}
