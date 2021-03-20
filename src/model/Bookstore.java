@@ -96,15 +96,15 @@ public class Bookstore {
 			String[] split = line.split(",");
 			Book book = new Book(split[0], split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]),
 					Double.parseDouble(split[5]), split[6], split[7]);
-			if (book.getIsbn() >= 1000 && book.getIsbn() < 2000) {
+			if (book.getIsbn() >= 100 && book.getIsbn() < 200) {
 				shelving1.add(Integer.parseInt(split[4]), book);
 
 			}
-			if (book.getIsbn() >= 2000 && book.getIsbn() < 3000) {
+			if (book.getIsbn() >= 200 && book.getIsbn() < 300) {
 				shelving2.add(Integer.parseInt(split[4]), book);
 
 			}
-			if (book.getIsbn() >= 3000 && book.getIsbn() <= 4000) {
+			if (book.getIsbn() >= 300 && book.getIsbn() <= 400) {
 				shelving3.add(Integer.parseInt(split[4]), book);
 
 			}
@@ -117,5 +117,25 @@ public class Bookstore {
 		//System.out.println(shelving.getSize()+"");
 	}
 	
+	public Book searchBook(int isbnForSearch) {
+		Book searched = null;
+		if (isbnForSearch >= 100 && isbnForSearch < 200) {
+			searched = shelving1.get(isbnForSearch);
+		}
+		if (isbnForSearch >= 200 && isbnForSearch < 300) {
+
+			searched = shelving2.get(isbnForSearch);
+		}
+		if (isbnForSearch >= 300 && isbnForSearch <= 400) {
+			searched = shelving3.get(isbnForSearch);
+		}
+
+		return searched;
+	}
 	
+	
+	
+	
+
 }
+	 
