@@ -1,6 +1,6 @@
+  
 package ui;
 import java.io.IOException;
-import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -414,8 +414,13 @@ public class GUIController {
     }
     
     @FXML
-    void showFirstChapter(ActionEvent event) {  
-    	System.out.println("show first chapter button working");
+    void showFirstChapter(ActionEvent event) {
+    	Alert windowInformation = new Alert(AlertType.INFORMATION);
+    	windowInformation.setTitle("First Chapter");
+    	windowInformation.setHeaderText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+    	windowInformation.setContentText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getReview());
+    	windowInformation.showAndWait();
+
     }
 
     @FXML
@@ -425,16 +430,16 @@ public class GUIController {
 
     @FXML
     void showReviews(ActionEvent event) {
-    	System.out.println("show reviews button working");
+    	Alert alertReview = new Alert(AlertType.INFORMATION);
+    	alertReview.setTitle("Review");
+    	alertReview.setHeaderText("Review of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+    	alertReview.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
+
+    	alertReview.showAndWait();
     }
     
     @FXML
     void generateISNBList(ActionEvent event) {
-    	Iterator<Book> iterator = clientIsnbList.getItems().iterator();
-    	while (iterator.hasNext()) {
-			Book b = (Book) iterator.next();
-			bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList().add(b.getIsbn());
-		}
     	
     }
     
@@ -648,3 +653,4 @@ public class GUIController {
     }
     
 }
+
