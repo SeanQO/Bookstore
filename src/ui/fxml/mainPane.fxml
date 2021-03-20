@@ -76,7 +76,7 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="300.0" text="Please register in to our system before generating the ISMB codes." textAlignment="CENTER" wrapText="true">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="300.0" text="Please register in to our system before generating the ISNB codes." textAlignment="CENTER" wrapText="true">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

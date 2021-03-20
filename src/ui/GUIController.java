@@ -2,6 +2,7 @@
 package ui;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -269,6 +270,25 @@ public class GUIController {
 		error.showAndWait();
 
 	}
+	
+	private void isnbListAddedAlert() {
+		Alert error = new Alert(AlertType.INFORMATION);
+		error.setTitle("The isnb list is created");
+		error.setContentText("The ISNB list is created and added to the client");
+		error.showAndWait();
+
+	}
+	
+	
+	private void emptyIsnbListAlert() {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("The isnb list is empty");
+		error.setContentText("Cant generate an empty ISNB list. Please select al least one book.");
+		error.showAndWait();
+	
+	}
+	
+	
 
 	// ****** menu options actions ******
 	@FXML
@@ -418,8 +438,7 @@ public class GUIController {
 			Alert windowInformation = new Alert(AlertType.INFORMATION);
 			windowInformation.setTitle("Review");
 			windowInformation.setHeaderText("Review Of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
-			windowInformation
-					.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
+			windowInformation.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
 			windowInformation.showAndWait();
 		}else {
 			noBookSelectedAlert();
@@ -447,7 +466,26 @@ public class GUIController {
 
 	@FXML
 	void generateISNBList(ActionEvent event) {
+		if (clientIsnbList.getItems().size() != 0) {
+			Iterator<Book> iterator = clientIsnbList.getItems().iterator();
+	    	while (iterator.hasNext()) {
+				Book b = (Book) iterator.next();
+				bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList().add(b.getIsbn());
+			}
 
+	    	isnbListAddedAlert();
+	    	
+	    	dualPaneSectionOne.getChildren().clear();
+	    	dualPaneSectionOne.setCenter(registerClientAP);
+	    	loadAllBooksTable();
+	    	
+			clientNameTxtF.setText("");;
+			idClientTxtF.setText("");
+	    	
+		}else {
+			emptyIsnbListAlert();
+		}
+    	
 	}
 
 	// ****** section two change panes ******
