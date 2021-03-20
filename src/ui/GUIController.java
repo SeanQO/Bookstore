@@ -143,10 +143,22 @@ public class GUIController {
 	private TextField searchClientTxF;
 
 	@FXML
-	private TableView<?> clientTable;
+	private TableView<Client> clientTable;
 
 	@FXML
-	private TableView<?> bookTable;
+	private TableView<Book> bookTable;
+	
+	@FXML
+    private TableColumn<Client, Integer> clientIdColumn;
+
+    @FXML
+    private TableColumn<Client, Double> clientTimeColumn;
+    
+    @FXML
+    private TableColumn<Book, String> bookNameSectionThreeColumn;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceSectionThreeColumn;
 
 	// ****** section four ******
 	@FXML
@@ -156,22 +168,46 @@ public class GUIController {
 	private Label clientNameOneTxL;
 
 	@FXML
-	private TableView<?> registerOneTable;
+	private TableView<Book> registerOneTable;
+	
+	@FXML
+    private TableColumn<Book, String> bookNameRegisterOneColumn;
 
+    @FXML
+    private TableColumn<Book, Double> bookPriceRegisterOneColumn;
+	
+	@FXML
+	private TableView<Book> registerTwoTable;
+	
+	@FXML
+    private TableColumn<Book, String> bookNameRegisterTwoColumn;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceRegisterTwoColumn;
+	
+	@FXML
+	private TableView<Book> registerThreeTable;
+	
+	@FXML
+    private TableColumn<Book, String> bookNameRegisterThreeColumn;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceRegisterThreeColumn;
+
+	@FXML
+	private TableView<Book> registerFourTable;
+	
+	@FXML
+    private TableColumn<Book, String> bookNameRegisterFourColumn;
+
+    @FXML
+    private TableColumn<Book, Double> bookPriceRegisterFourColumn;
+	
 	@FXML
 	private Label clientNameTwoTxL;
 
 	@FXML
-	private TableView<?> registerTwoTable;
-
-	@FXML
 	private Label clientNameThreeTxL;
-
-	@FXML
-	private TableView<?> registerThreeTable;
-
-	@FXML
-	private TableView<?> registerFourTable;
 
 	@FXML
 	private Label clientNameFourTxL;
@@ -601,12 +637,6 @@ public class GUIController {
 	}
 
 	// ****** section two change panes ******
-
-	private void setSectionTwoMain() {
-		sectionTwoBorderPane.setRight(mainSectionTwoPane);
-
-	}
-
 	private void setSectionTwoSecondary() {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoSecondPane.fxml"));

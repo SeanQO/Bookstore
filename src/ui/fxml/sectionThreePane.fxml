@@ -23,8 +23,8 @@
                <children>
                   <TableView fx:id="clientTable" prefHeight="350.0" prefWidth="280.0">
                     <columns>
-                      <TableColumn prefWidth="124.0" text="Client ID" />
-                      <TableColumn prefWidth="121.0" text="Time In store" />
+                      <TableColumn fx:id="clientIdColumn" prefWidth="124.0" text="Client ID" />
+                      <TableColumn fx:id="clientTimeColumn" prefWidth="121.0" text="Time In store" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -37,8 +37,8 @@
                   </VBox>
                   <TableView fx:id="bookTable" prefHeight="350.0" prefWidth="280.0">
                      <columns>
-                        <TableColumn prefWidth="124.0" text="Book" />
-                        <TableColumn prefWidth="121.0" text="Price" />
+                        <TableColumn fx:id="bookNameSectionThreeColumn" prefWidth="124.0" text="Book" />
+                        <TableColumn fx:id="bookPriceSectionThreeColumn" prefWidth="121.0" text="Price" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

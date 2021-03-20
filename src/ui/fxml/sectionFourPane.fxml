@@ -41,8 +41,8 @@
                               <Label fx:id="clientNameOneTxL" prefHeight="115.0" prefWidth="66.0" text="Client Name" wrapText="true" />
                               <TableView fx:id="registerOneTable" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Book name" />
-                                    <TableColumn prefWidth="75.0" text="price" />
+                                    <TableColumn fx:id="bookNameRegisterOneColumn" prefWidth="75.0" text="Book name" />
+                                    <TableColumn fx:id="bookPriceRegisterOneColumn" prefWidth="75.0" text="price" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -61,8 +61,8 @@
                               <Label fx:id="clientNameTwoTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <TableView fx:id="registerTwoTable" disable="true" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Book name" />
-                                  <TableColumn prefWidth="75.0" text="price" />
+                                  <TableColumn fx:id="bookNameRegisterTwoColumn" prefWidth="75.0" text="Book name" />
+                                  <TableColumn fx:id="bookPriceRegisterTwoColumn" prefWidth="75.0" text="price" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -85,8 +85,8 @@
                               <Label fx:id="clientNameThreeTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <TableView fx:id="registerThreeTable" disable="true" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Book name" />
-                                    <TableColumn prefWidth="75.0" text="price" />
+                                    <TableColumn fx:id="bookNameRegisterThreeColumn" prefWidth="75.0" text="Book name" />
+                                    <TableColumn fx:id="bookPriceRegisterThreeColumn" prefWidth="75.0" text="price" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -106,8 +106,8 @@
                               <Label fx:id="clientNameFourTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
                               <TableView fx:id="registerFourTable" disable="true" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Book name" />
-                                    <TableColumn prefWidth="75.0" text="price" />
+                                    <TableColumn fx:id="bookNameRegisterFourColumn" prefWidth="75.0" text="Book name" />
+                                    <TableColumn fx:id="bookPriceRegisterFourColumn" prefWidth="75.0" text="price" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
