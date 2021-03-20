@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import collections.IHashTable;
+import collections.Queue;
 import collections.TheHashTable;
 
 public class Bookstore {
 	
 	private List<Book> booksAvailable;
 	private List<Client> clients;
+	
+	private Queue<Client> clientsQueue;
 	
 	private IHashTable<Integer, Book > shelving1;
 	private IHashTable<Integer, Book > shelving2;
@@ -25,9 +28,11 @@ public class Bookstore {
 		
 		booksAvailable = new ArrayList<Book>();
 		clients = new ArrayList<Client>();
+		clientsQueue = new Queue<Client>();
 		shelving1 = new TheHashTable<>();
 		shelving2 = new TheHashTable<>();
 		shelving3 = new TheHashTable<>();
+		
 	}
 	
 	public void addClient(String name, int id) {

@@ -1,10 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Stack;
+import java.util.List;
+import collections.*;
 
 public class Client {
 	int[] isnbList;
+	
 	Stack<Book> basket;
 	int id;
 	String name;
@@ -55,7 +58,7 @@ public class Client {
 	}
 
 	public void addBookToBasket(Book book) {
-		basket.add(book);
+		basket.push(book);
 
 	}
 
@@ -192,6 +195,19 @@ public class Client {
         return Arrays.stream(arr).max().getAsInt();
     }
     
-   
+   /*
+    * public ArrayList<Book> booksToArray(){
+	   ArrayList<Book> booksArray = new ArrayList<>();
+		Stack<Book> tempBasket = new Stack<Book>();
+		while(!tempBasket.isEmpty()) {
+			SElement<Book> temp = tempBasket.pop().getT();
+			booksArray.add(temp);
+		}
+
+	   return booksArray;
+	   
+	   
+   }
+    */
 
 }
