@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.Stack;
 
 public class Client {
-	ArrayList<Integer> isnbList;
+	int[] isnbList;
 	Stack<Book> basket;
 	int id;
 	String name;
 	double timeInStore;
 
 	public Client(String name, int id) {
-		isnbList = new ArrayList<Integer>();
+		
 		basket = new Stack<Book>();
 		timeInStore = 0;
 		this.id = id;
@@ -28,7 +28,7 @@ public class Client {
 		return name;
 	}
 
-	public ArrayList<Integer> getIsnbList() {
+	public int[] getIsnbList() {
 		return isnbList;
 	}
 
@@ -45,9 +45,8 @@ public class Client {
 
 	}
 
-	public void addIsnbToList(int isnb) {
-		isnbList.add(isnb);
-
+	public void initializeIsbnList(int length) {
+		isnbList = new int[length];
 	}
 
 	public void sortIsnbList(int sortingMethod) {
