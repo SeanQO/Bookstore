@@ -15,6 +15,8 @@ public class Client {
 		isnbList = new ArrayList<Integer>();
 		basket = new Stack<Book>();
 		timeInStore = 0;
+		this.id = id;
+		this.name = name;
 
 	}
 

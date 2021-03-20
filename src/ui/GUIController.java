@@ -107,6 +107,9 @@ public class GUIController {
 
 	@FXML
 	private AnchorPane mainSectionTwoPane;
+	
+	@FXML
+    private Label clientNameSTLabel;
 
 	// * second section two *
 
@@ -308,19 +311,29 @@ public class GUIController {
 
 	@FXML
 	void openSectionTwo(ActionEvent event) {
+		
 		if (!isClientSelecting) {
 			try {
+				
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoPane.fxml"));
 				fxmlLoader.setController(this);
 
 				Parent Pane = fxmlLoader.load();
 
 				mainBorderPane.setCenter(Pane);
-
+				
 				setSectionTwoMain();
-
+				
+				String clientName = bookS.getClients().get(bookS.getClients().size() - 1).getName();
+				clientNameSTLabel.setText(clientName);
+				
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
+				
+			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+				// TODO: handle exception
+				clientNameSTLabel.setText("No Clients registered");
+				
 			}
 			
 		}else {

@@ -14,6 +14,15 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="380.0" BorderPane.alignment="CENTER">
          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="380.0">
+               <children>
+                  <Label fx:id="clientNameSTLabel" alignment="CENTER" prefHeight="91.0" prefWidth="371.0" text="Client Name" wrapText="true">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <TableView fx:id="sTwoBookTable" layoutX="50.0" layoutY="105.0" prefHeight="390.0" prefWidth="280.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Book name" />
