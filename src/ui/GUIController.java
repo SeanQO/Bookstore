@@ -415,6 +415,7 @@ public class GUIController {
     @FXML
     void showFirstChapter(ActionEvent event) {
     	System.out.println("show first chapter button working");
+    	
     }
 
     @FXML
@@ -425,6 +426,12 @@ public class GUIController {
     @FXML
     void showReviews(ActionEvent event) {
     	System.out.println("show reviews button working");
+    	Alert alertReview = new Alert(AlertType.INFORMATION);
+    	alertReview.setTitle("Review");
+    	alertReview.setHeaderText("Review of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+    	alertReview.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
+
+    	alertReview.showAndWait();
     }
     
     @FXML
