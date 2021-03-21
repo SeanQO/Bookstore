@@ -188,11 +188,11 @@ public class Client {
     }
 
     private static int calculateNumberOfDigitsIn(int number) {
-        return (int) Math.log10(number) + 1; // valid only if number > 0
+        return (int) Math.log10(number) + 1; // valid only if number > 0 O(1)
     }
 
     private static int findMaximumNumberIn(int[] arr) {
-        return Arrays.stream(arr).max().getAsInt();
+        return Arrays.stream(arr).max().getAsInt(); //O(1)
     }
     
    /*
