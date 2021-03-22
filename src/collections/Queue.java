@@ -50,8 +50,6 @@ public class Queue<T> implements IQueue<T> {
         return size;
     }
     
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<T> toArray() {
 		ArrayList<T> booksArray = new ArrayList<>();

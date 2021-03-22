@@ -1,12 +1,6 @@
-
 package ui;
-
-
 import java.io.IOException;
-
 import java.util.Iterator;
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -326,6 +320,7 @@ public class GUIController {
 	}
 
 	private void loadBooksSectionThree(ObservableList<Book> observableList) {
+		System.out.println(observableList.toString());
 		bookTable.setItems(observableList);
 		bookNameSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		bookPriceSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
@@ -485,7 +480,8 @@ public class GUIController {
 				mainBorderPane.setCenter(Pane);
 
 				if (bookS.getClientsQueue().size > 0) {
-					loadClientListSectionThree(null);
+					ObservableList<Client> oList = FXCollections.observableArrayList(bookS.getClientsQueue().toArray());
+					loadClientListSectionThree(oList);
 
 				}
 
@@ -749,10 +745,7 @@ public class GUIController {
 			Book b = (Book) iterator.next();
 			bookS.getClients().get(clientIndexInSTwo).addBookToBasket(b);
 		}
-		
-		System.out.println("dsaddsa"+bookS.getClients().get(clientIndexInSTwo).getBasket().getTop());
-		System.out.println(bookS.getClients().get(clientIndexInSTwo).getBasket().toArray().toString());
-		
+
 		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));
 		bookS.getClients().remove(clientIndexInSTwo);
 		 
@@ -770,7 +763,12 @@ public class GUIController {
 		
 		if (clientTable.getSelectionModel().getSelectedIndex() >= 0 ) {
 			Client client = (Client)clientTable.getSelectionModel().getSelectedItem();
-			
+			System.out.println(client.getBasket().size);
+			System.out.println(client.getBasket().toArray().size());
+			ObservableList<Book> observableList = FXCollections.observableArrayList(client.getBasket().toArray());
+			System.out.println(observableList.toString());
+			loadBooksSectionThree(observableList);
+
 		}else {
 			noClientSelectedAlert();
 			
