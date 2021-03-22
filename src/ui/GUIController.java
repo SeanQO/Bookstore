@@ -256,7 +256,24 @@ public class GUIController {
 		clientTable = new TableView<Client>();
 		clientIdColumn = new TableColumn<Client, Integer>("id");
 		clientTimeColumn = new TableColumn<Client, Double>("timeInStore");
-
+		
+		registerOneTable = new TableView<Book>();
+		bookNameRegisterOneColumn = new TableColumn<Book, String>("name");
+		bookPriceRegisterOneColumn = new TableColumn<Book, Double>("price");
+		
+		registerTwoTable = new TableView<Book>();
+		bookNameRegisterTwoColumn = new TableColumn<Book, String>("name");
+		bookPriceRegisterTwoColumn = new TableColumn<Book, Double>("price");
+		
+		registerThreeTable = new TableView<Book>();
+		bookNameRegisterThreeColumn = new TableColumn<Book, String>("name");
+		bookPriceRegisterThreeColumn = new TableColumn<Book, Double>("price");
+		
+		registerFourTable = new TableView<Book>();
+		bookNameRegisterFourColumn = new TableColumn<Book, String>("name");
+		bookPriceRegisterFourColumn = new TableColumn<Book, Double>("price");
+		
+		
 	}
 
 	public void initialize() {
@@ -325,6 +342,36 @@ public class GUIController {
 		bookPriceSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 
 	}
+	
+	private void loadRegisterOneTable(ObservableList<Book> observableList) {
+		registerOneTable.setItems(observableList);
+		bookNameRegisterOneColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceRegisterOneColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+
+	}
+	
+	private void loadRegisterTwoTable(ObservableList<Book> observableList) {
+		registerTwoTable.setItems(observableList);
+		bookNameRegisterTwoColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceRegisterTwoColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+
+	}
+	
+	private void loadRegisterThreeTable(ObservableList<Book> observableList) {
+		registerThreeTable.setItems(observableList);
+		bookNameRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+
+	}
+	
+	private void loadRegisterFourTable(ObservableList<Book> observableList) {
+		registerThreeTable.setItems(observableList);
+		bookNameRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+
+	}
+	
+	
 
 	// * Alerts setup *
 	private void errorLoadingBookListAlert() {
@@ -516,6 +563,50 @@ public class GUIController {
 		}
 
 	}
+	
+	private void loadSectionFour() {
+		if (bookS.getCashiers()[1].getClient() != null) {
+			loadRegisterOne();
+		}
+		
+		if (bookS.getCashiers()[1].getClient() != null) {
+			loadRegisterTwo();
+		}
+		
+		if (bookS.getCashiers()[1].getClient() != null) {
+			loadRegisterThree();
+		}
+		
+		if (bookS.getCashiers()[1].getClient() != null) {
+			loadRegisterFour();
+		}
+		
+	}
+	
+	private void loadRegisterOne() {
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[1].toArrayBooks());
+		loadRegisterOneTable(oList);
+		
+	}
+	
+	private void loadRegisterTwo() {
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[2].toArrayBooks());
+		loadRegisterTwoTable(oList);
+		
+	}
+	
+	private void loadRegisterThree() {
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[3].toArrayBooks());
+		loadRegisterThreeTable(oList);
+		
+	}
+	
+	private void loadRegisterFour() {
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[4].toArrayBooks());
+		loadRegisterFourTable(oList);
+		
+	}
+	
 
 	// ****** section one actions ******
 

@@ -54,7 +54,7 @@ public class Cashier {
 		client.getBasket().pop();	
 	}
 	
-	private ArrayList<Book> toArrayBooks() {
+	public ArrayList<Book> toArrayBooks() {
 		ArrayList<Book> temp = new ArrayList<>();
 		temp = client.getBasket().toArray();
 		return temp;
