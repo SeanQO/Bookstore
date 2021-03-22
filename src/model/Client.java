@@ -70,7 +70,7 @@ public class Client {
 			insertionSortImperative(isnbList);
 			break;
 		case 2:
-			mergeSort(isnbList, sortingMethod);
+			shellSort(isnbList);
 			break;
 		case 3:
 			radixSort(isnbList);
@@ -111,7 +111,7 @@ public class Client {
 		return nums;
 	}
 	*/
-
+	/*
 	public static void mergeSort(int[] a, int n) {
 		
 		if (n < 2) {
@@ -150,6 +150,28 @@ public class Client {
 			a[k++] = r[j++];
 		}
 	}
+	*/
+	
+	public static void shellSort(int[] a) {
+		int increment = a.length / 2;
+		while (increment > 0) {
+			for (int i = increment; i < a.length; i++) {
+				int j = i;
+				int temp = a[i];
+				while (j >= increment && a[j - increment] > temp) {
+					a[j] = a[j - increment];
+					j = j - increment;
+				}
+				a[j] = temp;
+			}
+			if (increment == 2) {
+				increment = 1;
+			} else {
+				increment *= (5.0 / 11);
+			}
+		}
+	}
+	
 	
 	public static void radixSort(int numbers[]) {
         int maximumNumber = findMaximumNumberIn(numbers);

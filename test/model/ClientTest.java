@@ -14,10 +14,10 @@ public class ClientTest {
     }
 	
 	@Test
-	public void mergeSortTest() {
+	public void shellSortTest() {
 	    int[] actual = { 5, 1, 6, 2, 3, 4 };
 	    int[] expected = { 1, 2, 3, 4, 5, 6 };
-	    Client.mergeSort(actual, actual.length);
+	    Client.shellSort(actual);
 	    assertArrayEquals(expected, actual);
 	}
 	
