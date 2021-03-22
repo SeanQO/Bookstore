@@ -1,7 +1,7 @@
 
 package ui;
-import java.io.IOException;
 
+import java.io.IOException;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,30 +101,30 @@ public class GUIController {
 
 	@FXML
 	private TableView<Book> sTwoBookTable;
-	
-	@FXML
-    private TableColumn<Book, String> BookNameSectionTwo;
 
-    @FXML
-    private TableColumn<Book, Integer> IsbnSectionTwo;
+	@FXML
+	private TableColumn<Book, String> BookNameSectionTwo;
+
+	@FXML
+	private TableColumn<Book, Integer> IsbnSectionTwo;
 
 	@FXML
 	private BorderPane sectionTwoBorderPane;
 
 	@FXML
 	private AnchorPane mainSectionTwoPane;
-	
-	@FXML
-    private Label clientNameSTLabel;
-	
-	@FXML
-    private Button insertionB;
 
-    @FXML
-    private Button mergeB;
+	@FXML
+	private Label clientNameSTLabel;
 
-    @FXML
-    private Button radixB;
+	@FXML
+	private Button insertionB;
+
+	@FXML
+	private Button mergeB;
+
+	@FXML
+	private Button radixB;
 
 	// * second section two *
 
@@ -133,9 +133,9 @@ public class GUIController {
 
 	@FXML
 	private Label bookLocationTxF;
-	
+
 	@FXML
-    private Button finishButton;
+	private Button finishButton;
 
 	// ****** section three ******
 
@@ -146,19 +146,19 @@ public class GUIController {
 	private TableView<Client> clientTable;
 
 	@FXML
-	private TableView<Book> bookTable;
-	
+	private TableColumn<Client, Integer> clientIdColumn;
+
 	@FXML
-    private TableColumn<Client, Integer> clientIdColumn;
+	private TableColumn<Client, Double> clientTimeColumn;
 
-    @FXML
-    private TableColumn<Client, Double> clientTimeColumn;
-    
-    @FXML
-    private TableColumn<Book, String> bookNameSectionThreeColumn;
+	@FXML
+	private TableView<Book> bookTable;
 
-    @FXML
-    private TableColumn<Book, Double> bookPriceSectionThreeColumn;
+	@FXML
+	private TableColumn<Book, String> bookNameSectionThreeColumn;
+
+	@FXML
+	private TableColumn<Book, Double> bookPriceSectionThreeColumn;
 
 	// ****** section four ******
 	@FXML
@@ -169,40 +169,40 @@ public class GUIController {
 
 	@FXML
 	private TableView<Book> registerOneTable;
-	
-	@FXML
-    private TableColumn<Book, String> bookNameRegisterOneColumn;
 
-    @FXML
-    private TableColumn<Book, Double> bookPriceRegisterOneColumn;
-	
+	@FXML
+	private TableColumn<Book, String> bookNameRegisterOneColumn;
+
+	@FXML
+	private TableColumn<Book, Double> bookPriceRegisterOneColumn;
+
 	@FXML
 	private TableView<Book> registerTwoTable;
-	
-	@FXML
-    private TableColumn<Book, String> bookNameRegisterTwoColumn;
 
-    @FXML
-    private TableColumn<Book, Double> bookPriceRegisterTwoColumn;
-	
+	@FXML
+	private TableColumn<Book, String> bookNameRegisterTwoColumn;
+
+	@FXML
+	private TableColumn<Book, Double> bookPriceRegisterTwoColumn;
+
 	@FXML
 	private TableView<Book> registerThreeTable;
-	
-	@FXML
-    private TableColumn<Book, String> bookNameRegisterThreeColumn;
 
-    @FXML
-    private TableColumn<Book, Double> bookPriceRegisterThreeColumn;
+	@FXML
+	private TableColumn<Book, String> bookNameRegisterThreeColumn;
+
+	@FXML
+	private TableColumn<Book, Double> bookPriceRegisterThreeColumn;
 
 	@FXML
 	private TableView<Book> registerFourTable;
-	
-	@FXML
-    private TableColumn<Book, String> bookNameRegisterFourColumn;
 
-    @FXML
-    private TableColumn<Book, Double> bookPriceRegisterFourColumn;
-	
+	@FXML
+	private TableColumn<Book, String> bookNameRegisterFourColumn;
+
+	@FXML
+	private TableColumn<Book, Double> bookPriceRegisterFourColumn;
+
 	@FXML
 	private Label clientNameTwoTxL;
 
@@ -229,13 +229,13 @@ public class GUIController {
 	private Bookstore bookS;
 
 	private final String BOOKSFILE = "data/bookList.csv";
-	
+
 	private boolean isClientSelecting;
-	
+
 	private boolean isClientSelectingSTwo;
-	
+
 	private int sectionTwoBookIndex;
-	
+
 	private int clientIndexInSTwo;
 
 	@SuppressWarnings("unchecked")
@@ -250,18 +250,22 @@ public class GUIController {
 		bookPriceList = new TableColumn<Book, Double>("Price");
 		bookIsnbList = new TableColumn<Book, Integer>("isbn");
 		clientIsnbList.getColumns().addAll(bookNameList, bookPriceList, bookIsnbList);
-		
+
 		sTwoBookTable = new TableView<Book>();
 		BookNameSectionTwo = new TableColumn<Book, String>("Book");
-		IsbnSectionTwo = new TableColumn<Book, Integer>("isbn");	
-					
+		IsbnSectionTwo = new TableColumn<Book, Integer>("isbn");
+
+		clientTable = new TableView<Client>();
+		clientIdColumn = new TableColumn<Client, Integer>("id");
+		clientTimeColumn = new TableColumn<Client, Double>("timeInStore");
+
 	}
 
 	public void initialize() {
 		if (bookS == null) {
 			bookS = new Bookstore();
 			try {
-				
+
 				bookS.importDataBooksList(BOOKSFILE);
 
 			} catch (IOException ioException) {
@@ -269,7 +273,7 @@ public class GUIController {
 
 			}
 			loadAllBooksTable();
-			
+
 		}
 
 	}
@@ -301,11 +305,25 @@ public class GUIController {
 		bookIsnbList.setCellValueFactory(new PropertyValueFactory<Book, Integer>("isbn"));
 
 	}
-	
+
 	private void loadIsbnSectionTwo(ObservableList<Book> observableList) {
 		sTwoBookTable.setItems(observableList);
 		BookNameSectionTwo.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		IsbnSectionTwo.setCellValueFactory(new PropertyValueFactory<Book, Integer>("isbn"));
+	}
+
+	private void loadClientListSectionThree(ObservableList<Client> observableList) {
+		clientTable.setItems(observableList);
+		clientIdColumn.setCellValueFactory(new PropertyValueFactory<Client, Integer>("id"));
+		clientTimeColumn.setCellValueFactory(new PropertyValueFactory<Client, Double>("timeInStore"));
+
+	}
+
+	private void loadBooksSectionThree(ObservableList<Book> observableList) {
+		bookTable.setItems(observableList);
+		bookNameSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+
 	}
 
 	// * Alerts setup *
@@ -333,6 +351,13 @@ public class GUIController {
 		error.showAndWait();
 	}
 
+	private void noClientSelectedAlert() {
+		Alert error = new Alert(AlertType.INFORMATION);
+		error.setTitle("No client selected");
+		error.setContentText("Please select one client in order to show the clients books in the basket.");
+		error.showAndWait();
+	}
+
 	private void emptyFieldsAlert(String emptyFields) {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Fields are empty");
@@ -350,7 +375,7 @@ public class GUIController {
 		error.showAndWait();
 
 	}
-	
+
 	private void isnbListAddedAlert() {
 		Alert error = new Alert(AlertType.INFORMATION);
 		error.setTitle("The isnb list is created");
@@ -358,27 +383,25 @@ public class GUIController {
 		error.showAndWait();
 
 	}
-	
-	
+
 	private void emptyIsnbListAlert() {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("The isnb list is empty");
 		error.setContentText("Cant generate an empty ISNB list. Please select al least one book.");
 		error.showAndWait();
-	
+
 	}
-	
-	
+
 	private void clientIsSelectingAlert() {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("The client is selecting ISNB");
 		error.setContentText("Please finish selecting ISNB codes to change section.");
 		error.showAndWait();
-		
+
 	}
 
 	// ****** menu options actions ******
-	
+
 	@FXML
 	void openSectionOne(ActionEvent event) {
 		mainBorderPane.setCenter(sectionOneAnchorPane);
@@ -390,60 +413,59 @@ public class GUIController {
 		openSectiontwo();
 
 	}
-	
+
 	private void openSectiontwo() {
 		if (!isClientSelecting) {
 			try {
-				
+
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/sectionTwoPane.fxml"));
 				fxmlLoader.setController(this);
 
 				Parent Pane = fxmlLoader.load();
 
 				mainBorderPane.setCenter(Pane);
-				
+
 				if (isClientSelectingSTwo) {
 					setSectionTwoSecondary();
-					
+
 				}
-			
+
 				String clientName = bookS.getClients().get(clientIndexInSTwo).getName();
 				clientNameSTLabel.setText(clientName);
-				
+
 				loadIsbnSectionTwo(getBooks());
-				
+
 				insertionB.setDisable(false);
 				mergeB.setDisable(false);
 				radixB.setDisable(false);
-				
+
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
-				
+
 			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
 				clientNameSTLabel.setText("No Clients In this section");
 				insertionB.setDisable(true);
 				mergeB.setDisable(true);
 				radixB.setDisable(true);
-				
-				
+
 			}
-			
-		}else {
+
+		} else {
 			clientIsSelectingAlert();
-			
+
 		}
 	}
-	
-	private ObservableList<Book> getBooks(){
+
+	private ObservableList<Book> getBooks() {
 		Client client = bookS.getClients().get(clientIndexInSTwo);
 		ObservableList<Book> books = FXCollections.observableArrayList();
 		for (int i = 0; i < client.getIsnbList().length; i++) {
-			 books.add( bookS.searchBook(client.getIsnbList()[i]) );
-			
+			books.add(bookS.searchBook(client.getIsnbList()[i]));
+
 		}
-		
+
 		return books;
-	} 
+	}
 
 	@FXML
 	void openSectionThree(ActionEvent event) {
@@ -456,16 +478,19 @@ public class GUIController {
 
 				mainBorderPane.setCenter(Pane);
 
+				if (bookS.getClientsQueue().size > 0) {
+					loadClientListSectionThree(null);
+
+				}
+
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
 			}
-			
-		}else {
-			clientIsSelectingAlert();
-			
-		}
 
-		
+		} else {
+			clientIsSelectingAlert();
+
+		}
 
 	}
 
@@ -483,12 +508,11 @@ public class GUIController {
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
 			}
-			
-		}else {
+
+		} else {
 			clientIsSelectingAlert();
-			
+
 		}
-		
 
 	}
 
@@ -518,7 +542,7 @@ public class GUIController {
 				addBookToListB.setDisable(false);
 				removeBookFromListB.setDisable(false);
 				generateISNBB.setDisable(false);
-				
+
 				isClientSelecting = true;
 
 			} else {
@@ -569,37 +593,34 @@ public class GUIController {
 
 	}
 
-	
-
 	@FXML
 	void showReview(ActionEvent event) {
-		
-		if(allBooksTable.getSelectionModel().getSelectedIndex() >= 0) {
+
+		if (allBooksTable.getSelectionModel().getSelectedIndex() >= 0) {
 			Alert windowInformation = new Alert(AlertType.INFORMATION);
 			windowInformation.setTitle("Review");
-			windowInformation.setHeaderText("Review Of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
-			windowInformation.setContentText( allBooksTable.getSelectionModel().getSelectedItem().getReview());
+			windowInformation
+					.setHeaderText("Review Of " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+			windowInformation.setContentText(allBooksTable.getSelectionModel().getSelectedItem().getReview());
 			windowInformation.showAndWait();
-		}else {
+		} else {
 			noBookSelectedAlert();
 		}
-		
-		
-		
 
 	}
 
 	@FXML
 	void showFirstChapter(ActionEvent event) {
-		if(allBooksTable.getSelectionModel().getSelectedIndex() >= 0) {
-			
-		Alert windowInformation = new Alert(AlertType.INFORMATION);
-		windowInformation.setTitle("First Chapter");
-		windowInformation.setHeaderText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getName());
-		windowInformation
-				.setContentText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getInitialChapters());
-		windowInformation.showAndWait();
-		}else {
+		if (allBooksTable.getSelectionModel().getSelectedIndex() >= 0) {
+
+			Alert windowInformation = new Alert(AlertType.INFORMATION);
+			windowInformation.setTitle("First Chapter");
+			windowInformation
+					.setHeaderText("Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getName());
+			windowInformation.setContentText(
+					"Chapter 1: " + allBooksTable.getSelectionModel().getSelectedItem().getInitialChapters());
+			windowInformation.showAndWait();
+		} else {
 			noBookSelectedAlert();
 		}
 	}
@@ -608,32 +629,33 @@ public class GUIController {
 	void generateISNBList(ActionEvent event) {
 		if (clientIsnbList.getItems().size() != 0) {
 			Iterator<Book> iterator = clientIsnbList.getItems().iterator();
-	    	while (iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				Book b = (Book) iterator.next();
 				bookS.getClients().get(bookS.getClients().size() - 1).addIsbn(b.getIsbn());
 			}
 
-	    	isnbListAddedAlert();
-	    	
-	    	dualPaneSectionOne.getChildren().clear();
-	    	dualPaneSectionOne.setCenter(registerClientAP);
-	    	loadAllBooksTable();
-	    	
-			clientNameTxtF.setText("");;
+			isnbListAddedAlert();
+
+			dualPaneSectionOne.getChildren().clear();
+			dualPaneSectionOne.setCenter(registerClientAP);
+			loadAllBooksTable();
+
+			clientNameTxtF.setText("");
+			;
 			idClientTxtF.setText("");
-			
+
 			isClientSelecting = false;
-	    	
+
 			addBookToListB.setDisable(true);
 			removeBookFromListB.setDisable(true);
 			generateISNBB.setDisable(true);
-			
+
 			clientIsnbList.getItems().clear();
-			
-		}else {
+
+		} else {
 			emptyIsnbListAlert();
 		}
-    	
+
 	}
 
 	// ****** section two change panes ******
@@ -645,9 +667,9 @@ public class GUIController {
 			Parent Pane = fxmlLoader.load();
 
 			sectionTwoBorderPane.setRight(Pane);
-			
+
 			int isbn = bookS.getClients().get(clientIndexInSTwo).getIsnbList()[sectionTwoBookIndex];
-			sectionTwoBookIndex ++;
+			sectionTwoBookIndex++;
 			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
 
@@ -661,7 +683,7 @@ public class GUIController {
 	@FXML
 	void insertionSort(ActionEvent event) {
 		setSectionTwoSecondary();
-		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(1);
+		bookS.getClients().get(bookS.getClients().size() - 1).sortIsnbList(1);
 		loadIsbnSectionTwo(getBooks());
 		isClientSelectingSTwo = true;
 	}
@@ -669,7 +691,7 @@ public class GUIController {
 	@FXML
 	void mergeSort(ActionEvent event) {
 		setSectionTwoSecondary();
-		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(2);
+		bookS.getClients().get(bookS.getClients().size() - 1).sortIsnbList(2);
 		loadIsbnSectionTwo(getBooks());
 		isClientSelectingSTwo = true;
 	}
@@ -677,56 +699,77 @@ public class GUIController {
 	@FXML
 	void radixSort(ActionEvent event) {
 		setSectionTwoSecondary();
-		bookS.getClients().get(bookS.getClients().size() -1 ).sortIsnbList(3);
+		bookS.getClients().get(bookS.getClients().size() - 1).sortIsnbList(3);
 		loadIsbnSectionTwo(getBooks());
 		isClientSelectingSTwo = true;
 	}
 
 	// ****** section two main secondary pane actions ******
-	
+
 	@FXML
 	void nextBook(ActionEvent event) {
 		try {
-			int isbn = bookS.getClients().get(bookS.getClients().size() -1 ).getIsnbList()[sectionTwoBookIndex +1];
-			sectionTwoBookIndex ++;
+			int isbn = bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList()[sectionTwoBookIndex + 1];
+			sectionTwoBookIndex++;
 			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
-			
+
 		} catch (IndexOutOfBoundsException idBoundsException) {
 			finishButton.setDisable(false);
-			
+
 		}
-		
+
 	}
 
 	@FXML
 	void previousBook(ActionEvent event) {
 		try {
-			int isbn = bookS.getClients().get(bookS.getClients().size() -1 ).getIsnbList()[sectionTwoBookIndex -1];
-			sectionTwoBookIndex --;
+			int isbn = bookS.getClients().get(bookS.getClients().size() - 1).getIsnbList()[sectionTwoBookIndex - 1];
+			sectionTwoBookIndex--;
 			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
-			
+
 		} catch (IndexOutOfBoundsException idBoundsException) {
-			
+
+		}
+
+	}
+
+	@FXML
+	void finishSectionTwo(ActionEvent event) {
+		Iterator<Book> iterator = sTwoBookTable.getItems().iterator();
+		
+		while (iterator.hasNext()) {
+			Book b = (Book) iterator.next();
+			bookS.getClients().get(clientIndexInSTwo).addBookToBasket(b);
 		}
 		
+		System.out.println("dsaddsa"+bookS.getClients().get(clientIndexInSTwo).getBasket().getTop());
+		System.out.println(bookS.getClients().get(clientIndexInSTwo).getBasket().toArray().toString());
+		
+		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));
+		bookS.getClients().remove(clientIndexInSTwo);
+		 
+		isClientSelectingSTwo = false;
+		clientIndexInSTwo++;
+		sectionTwoBookIndex = 0;
+		openSectiontwo();
+
 	}
-	
-    @FXML
-    void finishSectionTwo(ActionEvent event) {
-    	isClientSelectingSTwo = false;
-    	clientIndexInSTwo ++;
-    	sectionTwoBookIndex = 0;
-    	openSectiontwo();
-    	
-    }
 
 	// ****** section three actions******
 
 	@FXML
 	void checkBooks(ActionEvent event) {
-
+		
+		if (clientTable.getSelectionModel().getSelectedIndex() >= 0 ) {
+			Client client = (Client)clientTable.getSelectionModel().getSelectedItem();
+			
+		}else {
+			noClientSelectedAlert();
+			
+		}
+		
 	}
 
 	@FXML
