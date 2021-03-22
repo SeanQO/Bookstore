@@ -1,12 +1,12 @@
 package model;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import collections.IHashTable;
 import collections.Queue;
 import collections.TheHashTable;
@@ -43,6 +43,14 @@ public class Bookstore {
 	
 	public List<Client> getClients(){
 		return clients;
+	}
+	
+	public void addClientToQueue(Client client) {
+		clientsQueue.enqueue(client);
+	}
+	
+	public Queue<Client> getClientsQueue(){
+		return clientsQueue;
 	}
 	
 	public List<Book> getBooksAvailable() {
