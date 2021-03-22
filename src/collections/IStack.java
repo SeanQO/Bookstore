@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.ArrayList;
+
 public interface IStack<T> {
 	
 	public boolean isEmpty();
@@ -9,5 +11,7 @@ public interface IStack<T> {
 	public SElement<T> top();
 	
 	public SElement<T> pop();
+	
+	public ArrayList<T> toArray();
 	
 }

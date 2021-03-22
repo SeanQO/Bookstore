@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.ArrayList;
+
 public class Stack<T> implements IStack<T> {
 	
 	private SElement <T> top;
@@ -50,5 +52,34 @@ public class Stack<T> implements IStack<T> {
 	
 	public int getSize() {
 		return size;
+	}
+	
+	 /*
+    public ArrayList<Book> booksToArray(){
+	   ArrayList<Book> booksArray = new ArrayList<>();
+		Stack<Book> tempBasket = new Stack<Book>();
+		while(!tempBasket.isEmpty()) {
+			SElement<Book> temp = tempBasket.pop().getT();
+			booksArray.add(temp);
+		}
+
+	   return booksArray;
+	   
+	   
+   }
+   */ 
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<T> toArray() {
+		ArrayList<T> booksArray = new ArrayList<>();
+		Stack<T> temp = new Stack<T>();
+		while(!temp.isEmpty()) {
+			temp.pop();
+			booksArray.add((T) temp);
+		}
+
+	   return booksArray;
 	}
 }
