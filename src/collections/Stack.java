@@ -53,33 +53,19 @@ public class Stack<T> implements IStack<T> {
 	public int getSize() {
 		return size;
 	}
-	
-	 /*
-    public ArrayList<Book> booksToArray(){
-	   ArrayList<Book> booksArray = new ArrayList<>();
-		Stack<Book> tempBasket = new Stack<Book>();
-		while(!tempBasket.isEmpty()) {
-			SElement<Book> temp = tempBasket.pop().getT();
-			booksArray.add(temp);
-		}
-
-	   return booksArray;
-	   
-	   
-   }
-   */ 
 
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<T> toArray() {
 		ArrayList<T> booksArray = new ArrayList<>();
-		Stack<T> temp = new Stack<T>();
+		Stack<T> temp = this;
 		while(!temp.isEmpty()) {
+			
+			booksArray.add((T)temp.top.getT() );
 			temp.pop();
-			booksArray.add((T) temp);
 		}
-
+       
 	   return booksArray;
 	}
 }

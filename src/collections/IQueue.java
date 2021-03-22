@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.ArrayList;
+
 public interface IQueue<T> {
 	
 	public int getSize();
@@ -13,4 +15,6 @@ public interface IQueue<T> {
 	public QElement<T> dequeue();
 	
 	public QElement<T> getLast();
+	
+	public ArrayList<T> toArray();
 }

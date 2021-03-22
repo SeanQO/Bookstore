@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.ArrayList;
+
 public class Queue<T> implements IQueue<T> {
 	
 	private QElement<T> first;
@@ -47,4 +49,19 @@ public class Queue<T> implements IQueue<T> {
     public int getSize() {
         return size;
     }
+    
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<T> toArray() {
+		ArrayList<T> booksArray = new ArrayList<>();
+		Queue<T> temp = this;
+		while(!temp.isEmpty()) {
+			
+			booksArray.add((T)temp.front().getT());
+			temp.dequeue();
+		}
+       
+	   return booksArray;
+	}
 }

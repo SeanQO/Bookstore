@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import collections.*;
 
@@ -12,11 +13,13 @@ public class Client {
 	double timeInStore;
 
 	public Client(String name, int id) {
+
 		isnbList = new int[0];
 		basket = new Stack<Book>();
 		timeInStore = 0;
 		this.id = id;
 		this.name = name;
+		
 
 	}
 
@@ -208,5 +211,6 @@ public class Client {
 	   
    }
    */ 
+    
 
 }

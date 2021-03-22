@@ -1,8 +1,11 @@
 
 package ui;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.Iterator;
+
+import collections.Queue;
+import collections.Stack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -271,8 +274,10 @@ public class GUIController {
 			loadAllBooksTable();
 			
 		}
+		
 
 	}
+	
 
 	// ****** filling and setting ******
 
