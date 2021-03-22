@@ -320,7 +320,6 @@ public class GUIController {
 	}
 
 	private void loadBooksSectionThree(ObservableList<Book> observableList) {
-		System.out.println(observableList.toString());
 		bookTable.setItems(observableList);
 		bookNameSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
 		bookPriceSectionThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
@@ -763,10 +762,7 @@ public class GUIController {
 		
 		if (clientTable.getSelectionModel().getSelectedIndex() >= 0 ) {
 			Client client = (Client)clientTable.getSelectionModel().getSelectedItem();
-			System.out.println(client.getBasket().size);
-			System.out.println(client.getBasket().toArray().size());
 			ObservableList<Book> observableList = FXCollections.observableArrayList(client.getBasket().toArray());
-			System.out.println(observableList.toString());
 			loadBooksSectionThree(observableList);
 
 		}else {

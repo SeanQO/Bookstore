@@ -54,8 +54,6 @@ public class Stack<T> implements IStack<T> {
 		return size;
 	}
 
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<T> toArray() {
 		ArrayList<T> booksArray = new ArrayList<>();
