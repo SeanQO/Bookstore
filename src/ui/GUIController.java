@@ -552,6 +552,8 @@ public class GUIController {
 				Parent Pane = fxmlLoader.load();
 
 				mainBorderPane.setCenter(Pane);
+				
+				loadSectionFour();
 
 			} catch (IOException ioException) {
 				// TODO: handle exception with an alert that displays the content of the error.
@@ -565,7 +567,7 @@ public class GUIController {
 	}
 	
 	private void loadSectionFour() {
-		if (bookS.getCashiers()[1].getClient() != null) {
+		if (bookS.getCashiers()[0].getClient() != null) {
 			loadRegisterOne();
 		}
 		
@@ -573,36 +575,36 @@ public class GUIController {
 			loadRegisterTwo();
 		}
 		
-		if (bookS.getCashiers()[1].getClient() != null) {
+		if (bookS.getCashiers()[2].getClient() != null) {
 			loadRegisterThree();
 		}
 		
-		if (bookS.getCashiers()[1].getClient() != null) {
+		if (bookS.getCashiers()[3].getClient() != null) {
 			loadRegisterFour();
 		}
 		
 	}
 	
 	private void loadRegisterOne() {
-		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[1].toArrayBooks());
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[0].toArrayBooks());
 		loadRegisterOneTable(oList);
 		
 	}
 	
 	private void loadRegisterTwo() {
-		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[2].toArrayBooks());
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[1].toArrayBooks());
 		loadRegisterTwoTable(oList);
 		
 	}
 	
 	private void loadRegisterThree() {
-		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[3].toArrayBooks());
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[2].toArrayBooks());
 		loadRegisterThreeTable(oList);
 		
 	}
 	
 	private void loadRegisterFour() {
-		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[4].toArrayBooks());
+		ObservableList<Book> oList = FXCollections.observableArrayList(bookS.getCashiers()[3].toArrayBooks());
 		loadRegisterFourTable(oList);
 		
 	}

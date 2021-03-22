@@ -31,6 +31,10 @@ public class Bookstore {
 		clients = new ArrayList<Client>();
 		clientsQueue = new Queue<Client>();
 		cashiers = new Cashier[4];
+		cashiers[0] = new Cashier();
+		cashiers[1] = new Cashier();
+		cashiers[2] = new Cashier();
+		cashiers[3] = new Cashier();
 		shelving1 = new TheHashTable<>();
 		shelving2 = new TheHashTable<>();
 		shelving3 = new TheHashTable<>();
