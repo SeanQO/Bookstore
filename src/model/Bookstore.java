@@ -15,6 +15,7 @@ public class Bookstore {
 	
 	private List<Book> booksAvailable;
 	private List<Client> clients;
+	private List<Cashier> cashiers;
 	
 	private Queue<Client> clientsQueue;
 	
@@ -29,6 +30,7 @@ public class Bookstore {
 		booksAvailable = new ArrayList<Book>();
 		clients = new ArrayList<Client>();
 		clientsQueue = new Queue<Client>();
+		cashiers = new ArrayList<Cashier>();
 		shelving1 = new TheHashTable<>();
 		shelving2 = new TheHashTable<>();
 		shelving3 = new TheHashTable<>();
