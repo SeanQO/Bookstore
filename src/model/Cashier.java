@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Cashier {
 	private Client client;
+	
+
 	private boolean avalaible;
 	private List<Double> prices;
 	
@@ -27,7 +29,16 @@ public class Cashier {
 	
 	
 	
-	
+	public Client getClient() {
+		return client;
+	}
+
+
+
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 
 
@@ -40,7 +51,13 @@ public class Cashier {
 
 
 	private void toPack() {
-		client.getBasket().pop();		
+		client.getBasket().pop();	
+	}
+	
+	private ArrayList<Book> toArrayBooks() {
+		ArrayList<Book> temp = new ArrayList<>();
+		temp = client.getBasket().toArray();
+		return temp;
 	}
 
 
