@@ -55,6 +55,7 @@ public class Client {
 		return timeInStore;
 	}
 
+	
 	public void addBookToBasket(Book book) {
 		basket.push(book);
 

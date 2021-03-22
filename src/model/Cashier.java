@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import collections.*;
+
 
 public class Cashier {
 	private Client client;
@@ -21,7 +21,39 @@ public class Cashier {
 	
 	public void nextStep() {
 		addPrice();
-		
+		toPack();
+		setTime();	
+	}
+	
+	
+	
+	
+
+
+
+
+	private void setTime() {
+		client.addTime(1);
+		}
+
+
+
+
+	private void toPack() {
+		client.getBasket().pop();		
+	}
+
+
+
+
+
+	public double summation() {
+		double summation = 9;
+	for (int i = 0; i < prices.size(); i++) {
+		summation +=prices.get(i);
+	}
+	
+	return summation;
 	}
 
 
@@ -30,6 +62,10 @@ public class Cashier {
 	private void addPrice() {
 		double toAdd = client.getBasket().top().getT().getPrice();
 		prices.add(toAdd);	
+	}
+	
+	public boolean isAvaliable() {
+		return avalaible;
 	}
 	
 }
