@@ -55,11 +55,21 @@ public class Queue<T> implements IQueue<T> {
 		ArrayList<T> booksArray = new ArrayList<>();
 		Queue<T> temp = this;
 		while(!temp.isEmpty()) {
-			
+
 			booksArray.add((T)temp.front().getT());
 			temp.dequeue();
 		}
        
 	   return booksArray;
+	}
+	
+	public ArrayList<T> toArray2() {
+		ArrayList<T> booksArray = new ArrayList<>();
+		QElement<T> temp = first;
+		while(temp!=null) {
+			booksArray.add(temp.getT());
+			temp = temp.getNextElement();
+		}
+		return booksArray;
 	}
 }
