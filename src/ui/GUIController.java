@@ -365,8 +365,6 @@ public class GUIController {
 		bookPriceRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 
 	}
-	
-	
 
 	// * Alerts setup *
 	private void errorLoadingBookListAlert() {
@@ -440,6 +438,13 @@ public class GUIController {
 		error.setContentText("Please finish selecting ISNB codes to change section.");
 		error.showAndWait();
 
+	}
+	
+	private void clientInRegisterAlert() {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Client is in this register");
+		error.setContentText("Please wait untill the client leaves the register to close it.");
+		error.showAndWait();
 	}
 
 	// ****** menu options actions ******
@@ -931,28 +936,56 @@ public class GUIController {
 		}
 
 	}
-
+	
 	private void closeRegister(int regNumber) {
 		switch (regNumber) {
 		case 1:
-			clientNameOneTxL.setText("Register closed");
-			registerOneTable.setDisable(true);
-			ROneButton.setText("Open register");
+			if (bookS.getCashiers()[0].getClient() == null) {
+				clientNameOneTxL.setText("Register closed");
+				registerOneTable.setDisable(true);
+				ROneButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 2:
-			clientNameTwoTxL.setText("Register closed");
-			registerTwoTable.setDisable(true);
-			RTwoButton.setText("Open register");
+			if (bookS.getCashiers()[1].getClient() == null) {
+				clientNameTwoTxL.setText("Register closed");
+				registerTwoTable.setDisable(true);
+				RTwoButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 3:
-			clientNameThreeTxL.setText("Register closed");
-			registerThreeTable.setDisable(true);
-			RThreeButton.setText("Open register");
+			if (bookS.getCashiers()[2].getClient() == null) {
+				clientNameThreeTxL.setText("Register closed");
+				registerThreeTable.setDisable(true);
+				RThreeButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 4:
-			clientNameFourTxL.setText("Register closed");
-			registerFourTable.setDisable(true);
-			RFourButton.setText("Open register");
+			if (bookS.getCashiers()[3].getClient() == null) {
+				clientNameFourTxL.setText("Register closed");
+				registerFourTable.setDisable(true);
+				RFourButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		default:
 			break;
