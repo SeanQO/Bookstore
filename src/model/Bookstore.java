@@ -41,6 +41,24 @@ public class Bookstore {
 		
 	}
 	
+	public void nextStep() {
+		for (int i = 0; i < cashiers.length; i++) {
+			if(cashiers[i].getClient().getBasket().size <= 0) {
+				cashiers[i] = new Cashier();
+				if (!clientsQueue.isEmpty()) {
+					cashiers[i].setClient(clientsQueue.front().getT());
+					clientsQueue.dequeue();
+				}
+				
+			}else {
+				cashiers[i].nextStep();
+				
+			}
+			
+		}
+		
+	}
+	
 	public void addClient(String name, int id) {
 		Client newClient = new Client(name, id);
 		clients.add(newClient);
