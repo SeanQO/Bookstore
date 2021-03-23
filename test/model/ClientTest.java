@@ -17,7 +17,7 @@ public class ClientTest {
 	public void shellSortTest() {
 	    int[] actual = { 5, 1, 6, 2, 3, 4 };
 	    int[] expected = { 1, 2, 3, 4, 5, 6 };
-	    Client.shellSort(actual);
+	    Client.mergeSort(actual,actual.length);
 	    assertArrayEquals(expected, actual);
 	}
 	
