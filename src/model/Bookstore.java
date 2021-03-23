@@ -43,7 +43,13 @@ public class Bookstore {
 	
 	public void nextStep() {
 		for (int i = 0; i < cashiers.length; i++) {
-			if(cashiers[i].getClient().getBasket().size <= 0) {
+			if (cashiers[i].getClient() == null) {
+				if (!clientsQueue.isEmpty()) {
+					cashiers[i].setClient(clientsQueue.front().getT());
+					clientsQueue.dequeue();
+				}
+				
+			}else if(cashiers[i].getClient().getBasket().size <= 0) {
 				cashiers[i] = new Cashier();
 				if (!clientsQueue.isEmpty()) {
 					cashiers[i].setClient(clientsQueue.front().getT());
@@ -54,6 +60,7 @@ public class Bookstore {
 				cashiers[i].nextStep();
 				
 			}
+			
 			
 		}
 		

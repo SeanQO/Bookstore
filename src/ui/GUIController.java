@@ -289,9 +289,11 @@ public class GUIController {
 			}
 			loadAllBooksTable();
 
+		}else {
+			System.out.println(bookS.getClientsQueue().getSize());
+			System.out.println(bookS.getClientsQueue().isEmpty());
+			
 		}
-		
-
 	}
 	
 
@@ -567,6 +569,13 @@ public class GUIController {
 	}
 	
 	private void loadSectionFour() {
+		
+		if (!bookS.getClientsQueue().isEmpty()) {
+			nextClientTxL.setText(bookS.getClientsQueue().front().getT().getName());
+		}else {
+			nextClientTxL.setText("No client in queue");
+		}
+		
 		if (bookS.getCashiers()[0].getClient() != null) {
 			loadRegisterOne();
 		}
@@ -837,8 +846,8 @@ public class GUIController {
 			Book b = (Book) iterator.next();
 			bookS.getClients().get(clientIndexInSTwo).addBookToBasket(b);
 		}
-
-		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));
+		
+		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));	
 		bookS.getClients().remove(clientIndexInSTwo);
 		 
 		isClientSelectingSTwo = false;
@@ -909,7 +918,8 @@ public class GUIController {
 
 	@FXML
 	void nextStep(ActionEvent event) {
-
+		bookS.nextStep();
+		loadSectionFour();
 	}
 
 	@FXML
