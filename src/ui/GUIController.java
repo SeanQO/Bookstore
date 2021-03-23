@@ -892,31 +892,31 @@ public class GUIController {
 	private boolean isRegisterOpen(int regNumber) {
 		switch (regNumber) {
 		case 1:
-			if (clientNameOneTxL.getText().equals("Register closed")) {
-				return false;
-			} else {
+			if (bookS.getCashiers()[0].isAvaliable()) {
 				return true;
+			} else {
+				return false;
 			}
 
 		case 2:
-			if (clientNameTwoTxL.getText().equals("Register closed")) {
-				return false;
-			} else {
+			if (bookS.getCashiers()[1].isAvaliable()) {
 				return true;
+			} else {
+				return false;
 			}
 
 		case 3:
-			if (clientNameThreeTxL.getText().equals("Register closed")) {
-				return false;
-			} else {
+			if (bookS.getCashiers()[2].isAvaliable()) {
 				return true;
+			} else {
+				return false;
 			}
 
 		case 4:
-			if (clientNameFourTxL.getText().equals("Register closed")) {
-				return false;
-			} else {
+			if (bookS.getCashiers()[3].isAvaliable()) {
 				return true;
+			} else {
+				return false;
 			}
 
 		default:
@@ -932,12 +932,14 @@ public class GUIController {
 	}
 	
 	private void closeRegister(int regNumber) {
+
 		switch (regNumber) {
 		case 1:
 			if (bookS.getCashiers()[0].getClient() == null) {
 				clientNameOneTxL.setText("Register closed");
 				registerOneTable.setDisable(true);
 				ROneButton.setText("Open register");
+				bookS.getCashiers()[0].setAvaliable(false);
 			
 			}else {
 				clientInRegisterAlert();
@@ -950,6 +952,7 @@ public class GUIController {
 				clientNameTwoTxL.setText("Register closed");
 				registerTwoTable.setDisable(true);
 				RTwoButton.setText("Open register");
+				bookS.getCashiers()[1].setAvaliable(false);
 			
 			}else {
 				clientInRegisterAlert();
@@ -962,6 +965,7 @@ public class GUIController {
 				clientNameThreeTxL.setText("Register closed");
 				registerThreeTable.setDisable(true);
 				RThreeButton.setText("Open register");
+				bookS.getCashiers()[2].setAvaliable(false);
 			
 			}else {
 				clientInRegisterAlert();
@@ -974,6 +978,7 @@ public class GUIController {
 				clientNameFourTxL.setText("Register closed");
 				registerFourTable.setDisable(true);
 				RFourButton.setText("Open register");
+				bookS.getCashiers()[3].setAvaliable(false);
 			
 			}else {
 				clientInRegisterAlert();
@@ -992,21 +997,29 @@ public class GUIController {
 			clientNameOneTxL.setText("Register open");
 			registerOneTable.setDisable(false);
 			ROneButton.setText("Close register");
+			bookS.getCashiers()[0].setAvaliable(true);
+			
 			break;
 		case 2:
 			clientNameTwoTxL.setText("Register open");
 			registerTwoTable.setDisable(false);
 			RTwoButton.setText("Close register");
+			bookS.getCashiers()[1].setAvaliable(true);
+			
 			break;
 		case 3:
 			clientNameThreeTxL.setText("Register open");
 			registerThreeTable.setDisable(false);
 			RThreeButton.setText("Close register");
+			bookS.getCashiers()[2].setAvaliable(true);
+			
 			break;
 		case 4:
 			clientNameFourTxL.setText("Register open");
 			registerFourTable.setDisable(false);
 			RFourButton.setText("Close register");
+			bookS.getCashiers()[3].setAvaliable(true);
+			
 			break;
 		default:
 			break;

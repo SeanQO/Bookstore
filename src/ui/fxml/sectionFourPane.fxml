@@ -38,7 +38,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
-                              <Label fx:id="clientNameOneTxL" prefHeight="115.0" prefWidth="66.0" text="Client Name" wrapText="true" />
+                              <Label fx:id="clientNameOneTxL" prefHeight="115.0" prefWidth="66.0" text="Register open" wrapText="true" />
                               <TableView fx:id="registerOneTable" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
                                     <TableColumn fx:id="bookNameRegisterOneColumn" prefWidth="75.0" text="Book name" />
@@ -58,8 +58,8 @@
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Label fx:id="clientNameTwoTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
-                              <TableView fx:id="registerTwoTable" disable="true" prefHeight="200.0" prefWidth="200.0">
+                              <Label fx:id="clientNameTwoTxL" prefHeight="115.0" prefWidth="66.0" text="Register open" wrapText="true" />
+                              <TableView fx:id="registerTwoTable" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
                                   <TableColumn fx:id="bookNameRegisterTwoColumn" prefWidth="75.0" text="Book name" />
                                   <TableColumn fx:id="bookPriceRegisterTwoColumn" prefWidth="75.0" text="price" />
@@ -68,7 +68,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Button fx:id="RTwoButton" mnemonicParsing="false" onAction="#activeDesactiveRTwo" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
+                              <Button fx:id="RTwoButton" mnemonicParsing="false" onAction="#activeDesactiveRTwo" prefHeight="68.0" prefWidth="62.0" text="close register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -82,8 +82,8 @@
                         <Separator prefWidth="200.0" />
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
-                              <Label fx:id="clientNameThreeTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
-                              <TableView fx:id="registerThreeTable" disable="true" prefHeight="200.0" prefWidth="200.0">
+                              <Label fx:id="clientNameThreeTxL" prefHeight="115.0" prefWidth="66.0" text="Register open" wrapText="true" />
+                              <TableView fx:id="registerThreeTable" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
                                     <TableColumn fx:id="bookNameRegisterThreeColumn" prefWidth="75.0" text="Book name" />
                                     <TableColumn fx:id="bookPriceRegisterThreeColumn" prefWidth="75.0" text="price" />
@@ -92,7 +92,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Button fx:id="RThreeButton" mnemonicParsing="false" onAction="#activeDesactiveRThree" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
+                              <Button fx:id="RThreeButton" mnemonicParsing="false" onAction="#activeDesactiveRThree" prefHeight="68.0" prefWidth="62.0" text="close register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -103,8 +103,8 @@
                         <HBox alignment="CENTER" prefHeight="230.0" prefWidth="380.0" spacing="20.0">
                            <children>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Label fx:id="clientNameFourTxL" prefHeight="115.0" prefWidth="66.0" text="Register closed" wrapText="true" />
-                              <TableView fx:id="registerFourTable" disable="true" prefHeight="200.0" prefWidth="200.0">
+                              <Label fx:id="clientNameFourTxL" prefHeight="115.0" prefWidth="66.0" text="Register open" wrapText="true" />
+                              <TableView fx:id="registerFourTable" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
                                     <TableColumn fx:id="bookNameRegisterFourColumn" prefWidth="75.0" text="Book name" />
                                     <TableColumn fx:id="bookPriceRegisterFourColumn" prefWidth="75.0" text="price" />
@@ -113,7 +113,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Button fx:id="RFourButton" mnemonicParsing="false" onAction="#activeDesactiveRFour" prefHeight="68.0" prefWidth="62.0" text="open register" wrapText="true" />
+                              <Button fx:id="RFourButton" mnemonicParsing="false" onAction="#activeDesactiveRFour" prefHeight="68.0" prefWidth="62.0" text="close register" wrapText="true" />
                            </children>
                         </HBox>
                      </children>

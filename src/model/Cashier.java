@@ -85,4 +85,7 @@ public class Cashier {
 		return avalaible;
 	}
 	
+	public void setAvaliable(boolean available) {
+		this.avalaible = available;
+	}
 }
