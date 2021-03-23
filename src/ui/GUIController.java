@@ -571,18 +571,22 @@ public class GUIController {
 		
 		if (bookS.getCashiers()[0].getClient() != null) {
 			loadRegisterOne();
+			clientNameOneTxL.setText(bookS.getCashiers()[0].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[1].getClient() != null) {
 			loadRegisterTwo();
+			clientNameTwoTxL.setText(bookS.getCashiers()[1].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[2].getClient() != null) {
 			loadRegisterThree();
+			clientNameThreeTxL.setText(bookS.getCashiers()[2].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[3].getClient() != null) {
 			loadRegisterFour();
+			clientNameThreeTxL.setText(bookS.getCashiers()[3].getClient().getName());
 		}
 		
 	}
