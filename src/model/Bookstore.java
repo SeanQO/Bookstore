@@ -165,7 +165,20 @@ public class Bookstore {
 	}
 	
 	
-	
+	  /*
+    public ArrayList<Book> booksToArray(){
+	   ArrayList<Book> booksArray = new ArrayList<>();
+		Stack<Book> tempBasket = new Stack<Book>();
+		while(!tempBasket.isEmpty()) {
+			SElement<Book> temp = tempBasket.pop().getT();
+			booksArray.add(temp);
+		}
+
+	   return booksArray;
+	   
+	   
+   }
+   */ 
 	
 	
 	

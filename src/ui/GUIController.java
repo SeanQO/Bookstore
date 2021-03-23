@@ -1,6 +1,10 @@
 package ui;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+
+import collections.Queue;
+import collections.Stack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -234,12 +238,9 @@ public class GUIController {
 
 	private int sectionTwoBookIndex;
 
-	private int clientIndexInSTwo;
-
 	@SuppressWarnings("unchecked")
 	public GUIController() {
 		sectionTwoBookIndex = 0;
-		clientIndexInSTwo = 0;
 		isClientSelectingSTwo = false;
 		bookS = null;
 		isClientSelecting = false;
@@ -289,11 +290,21 @@ public class GUIController {
 			}
 			loadAllBooksTable();
 
-		}else {
-			System.out.println(bookS.getClientsQueue().getSize());
-			System.out.println(bookS.getClientsQueue().isEmpty());
+		}
+	}
+	
+	private static ArrayList<Client> queueToArray(Queue<Client> q){
+		ArrayList<Client> clientsArray = new ArrayList<>();
+		Queue<Client> temp = q;
+		System.out.println("qta");
+		while(!temp.isEmpty()) {
+			clientsArray.add((Client)temp.front().getT());
+			temp.dequeue();
 			
 		}
+		
+	   return clientsArray;
+
 	}
 	
 
@@ -479,7 +490,7 @@ public class GUIController {
 
 				}
 
-				String clientName = bookS.getClients().get(clientIndexInSTwo).getName();
+				String clientName = bookS.getClients().get(0).getName();
 				clientNameSTLabel.setText(clientName);
 
 				loadIsbnSectionTwo(getBooks());
@@ -506,7 +517,7 @@ public class GUIController {
 	}
 
 	private ObservableList<Book> getBooks() {
-		Client client = bookS.getClients().get(clientIndexInSTwo);
+		Client client = bookS.getClients().get(0);
 		ObservableList<Book> books = FXCollections.observableArrayList();
 		for (int i = 0; i < client.getIsnbList().length; i++) {
 			books.add(bookS.searchBook(client.getIsnbList()[i]));
@@ -528,7 +539,8 @@ public class GUIController {
 				mainBorderPane.setCenter(Pane);
 
 				if (bookS.getClientsQueue().size > 0) {
-					ObservableList<Client> oList = FXCollections.observableArrayList(bookS.getClientsQueue().toArray());
+					ArrayList<Client> a = queueToArray(bookS.getClientsQueue());
+					ObservableList<Client> oList = FXCollections.observableArrayList(a);
 					loadClientListSectionThree(oList);
 
 				}
@@ -569,7 +581,7 @@ public class GUIController {
 	}
 	
 	private void loadSectionFour() {
-		
+		System.out.println("loadsF");
 		if (!bookS.getClientsQueue().isEmpty()) {
 			nextClientTxL.setText(bookS.getClientsQueue().front().getT().getName());
 		}else {
@@ -744,9 +756,9 @@ public class GUIController {
 			loadAllBooksTable();
 
 			clientNameTxtF.setText("");
-			;
+			
 			idClientTxtF.setText("");
-
+			
 			isClientSelecting = false;
 
 			addBookToListB.setDisable(true);
@@ -771,7 +783,7 @@ public class GUIController {
 
 			sectionTwoBorderPane.setRight(Pane);
 
-			int isbn = bookS.getClients().get(clientIndexInSTwo).getIsnbList()[sectionTwoBookIndex];
+			int isbn = bookS.getClients().get(0).getIsnbList()[sectionTwoBookIndex];
 			sectionTwoBookIndex++;
 			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
@@ -844,14 +856,13 @@ public class GUIController {
 		
 		while (iterator.hasNext()) {
 			Book b = (Book) iterator.next();
-			bookS.getClients().get(clientIndexInSTwo).addBookToBasket(b);
+			bookS.getClients().get(0).addBookToBasket(b);
 		}
 		
-		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));	
-		bookS.getClients().remove(clientIndexInSTwo);
-		 
+		bookS.addClientToQueue(bookS.getClients().get(0));	
+		bookS.getClients().remove(0);
+		
 		isClientSelectingSTwo = false;
-		clientIndexInSTwo++;
 		sectionTwoBookIndex = 0;
 		openSectiontwo();
 

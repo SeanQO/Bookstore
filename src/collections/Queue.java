@@ -9,11 +9,11 @@ public class Queue<T> implements IQueue<T> {
 	public int size;
 	
 	public Queue() {
-		
 		size = 0;
 	}
 
 	public boolean isEmpty() {
+		System.out.println(first);
 		return first == null;
 	}
 
