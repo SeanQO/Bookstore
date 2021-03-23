@@ -4,7 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 public class ClientTest {
-
+	
 	@Test
     public void insertionSortTest() {
         int[] input = {6, 2, 3, 4, 5, 1};

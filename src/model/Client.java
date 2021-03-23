@@ -217,5 +217,20 @@ public class Client {
         return Arrays.stream(arr).max().getAsInt(); //O(1)
     }
     
+   /*
+    public ArrayList<Book> booksToArray(){
+	   ArrayList<Book> booksArray = new ArrayList<>();
+		Stack<Book> tempBasket = new Stack<Book>();
+		while(!tempBasket.isEmpty()) {
+			SElement<Book> temp = tempBasket.pop().getT();
+			booksArray.add(temp);
+		}
+
+	   return booksArray;
+	   
+	   
+   }
+   */ 
+    
 
 }
