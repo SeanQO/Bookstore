@@ -577,21 +577,29 @@ public class GUIController {
 		if (bookS.getCashiers()[0].getClient() != null) {
 			loadRegisterOne();
 			clientNameOneTxL.setText(bookS.getCashiers()[0].getClient().getName());
+		}else {
+			clientNameOneTxL.setText("No client in cashier");
 		}
 		
 		if (bookS.getCashiers()[1].getClient() != null) {
 			loadRegisterTwo();
 			clientNameTwoTxL.setText(bookS.getCashiers()[1].getClient().getName());
+		}else {
+			clientNameTwoTxL.setText("No client in cashier");
 		}
 		
 		if (bookS.getCashiers()[2].getClient() != null) {
 			loadRegisterThree();
 			clientNameThreeTxL.setText(bookS.getCashiers()[2].getClient().getName());
+		}else {
+			clientNameThreeTxL.setText("No client in cashier");
 		}
 		
 		if (bookS.getCashiers()[3].getClient() != null) {
 			loadRegisterFour();
-			clientNameThreeTxL.setText(bookS.getCashiers()[3].getClient().getName());
+			clientNameFourTxL.setText(bookS.getCashiers()[3].getClient().getName());
+		}else {
+			clientNameFourTxL.setText("No client in cashier");
 		}
 		
 	}
@@ -922,20 +930,6 @@ public class GUIController {
 		bookS.nextStep();
 		loadSectionFour();
 	}
-
-	@FXML
-	void activeDesactiveROne(ActionEvent event) {
-		if (isRegisterOpen(1)) {
-			if (isRegisterOpen(2) || isRegisterOpen(3) || isRegisterOpen(4)) {
-				closeRegister(1);
-			} else {
-				lastRegisterAlert();
-			}
-		} else {
-			openRegister(1);
-		}
-
-	}
 	
 	private void closeRegister(int regNumber) {
 		switch (regNumber) {
@@ -1018,7 +1012,21 @@ public class GUIController {
 			break;
 		}
 	}
+	
+	@FXML
+	void activeDesactiveROne(ActionEvent event) {
+		if (isRegisterOpen(1)) {
+			if (isRegisterOpen(2) || isRegisterOpen(3) || isRegisterOpen(4)) {
+				closeRegister(1);
+			} else {
+				lastRegisterAlert();
+			}
+		} else {
+			openRegister(1);
+		}
 
+	}
+	
 	@FXML
 	void activeDesactiveRTwo(ActionEvent event) {
 		if (isRegisterOpen(2)) {

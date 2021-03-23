@@ -43,13 +43,30 @@ public class Bookstore {
 	
 	public void nextStep() {
 		for (int i = 0; i < cashiers.length; i++) {
-			if (cashiers[i].getClient() == null) {
+			if (cashiers[i].getClient() == null && cashiers[i].isAvaliable()) {
 				if (!clientsQueue.isEmpty()) {
 					cashiers[i].setClient(clientsQueue.front().getT());
 					clientsQueue.dequeue();
 				}
 				
-			}else if(cashiers[i].getClient().getBasket().size <= 0) {
+			}else if (cashiers[i].getClient() != null && cashiers[i].isAvaliable()) {
+				if(cashiers[i].getClient().getBasket().size == 0) {
+					cashiers[i] = new Cashier();
+					
+				}else {
+					cashiers[i].nextStep();
+					
+				}
+				
+			}
+			
+			
+		}
+		
+	}
+	
+	/*
+	 else if(cashiers[i].getClient().getBasket().size <= 0) {
 				cashiers[i] = new Cashier();
 				if (!clientsQueue.isEmpty()) {
 					cashiers[i].setClient(clientsQueue.front().getT());
@@ -60,11 +77,7 @@ public class Bookstore {
 				cashiers[i].nextStep();
 				
 			}
-			
-			
-		}
-		
-	}
+	 */
 	
 	public void addClient(String name, int id) {
 		Client newClient = new Client(name, id);
