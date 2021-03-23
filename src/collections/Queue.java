@@ -13,7 +13,6 @@ public class Queue<T> implements IQueue<T> {
 	}
 
 	public boolean isEmpty() {
-		System.out.println(first);
 		return first == null;
 	}
 
@@ -50,16 +49,14 @@ public class Queue<T> implements IQueue<T> {
         return size;
     }
     
-	@Override
-	public ArrayList<T> toArray() {
+    @Override
+    public ArrayList<T> toArray() {
 		ArrayList<T> booksArray = new ArrayList<>();
-		Queue<T> temp = this;
-		while(!temp.isEmpty()) {
-			
-			booksArray.add((T)temp.front().getT());
-			temp.dequeue();
+		QElement<T> temp = first;
+		while(temp!=null) {
+			booksArray.add(temp.getT());
+			temp = temp.getNextElement();
 		}
-       
-	   return booksArray;
+		return booksArray;
 	}
 }

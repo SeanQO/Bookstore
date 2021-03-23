@@ -2,9 +2,6 @@ package ui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import collections.Queue;
-import collections.Stack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -123,7 +120,7 @@ public class GUIController {
 	private Button insertionB;
 
 	@FXML
-	private Button mergeB;
+	private Button shellB;
 
 	@FXML
 	private Button radixB;
@@ -293,21 +290,6 @@ public class GUIController {
 		}
 	}
 	
-	private static ArrayList<Client> queueToArray(Queue<Client> q){
-		ArrayList<Client> clientsArray = new ArrayList<>();
-		Queue<Client> temp = q;
-		System.out.println("qta");
-		while(!temp.isEmpty()) {
-			clientsArray.add((Client)temp.front().getT());
-			temp.dequeue();
-			
-		}
-		
-	   return clientsArray;
-
-	}
-	
-
 	// ****** filling and setting ******
 
 	// * fill tables *
@@ -496,7 +478,7 @@ public class GUIController {
 				loadIsbnSectionTwo(getBooks());
 
 				insertionB.setDisable(false);
-				mergeB.setDisable(false);
+				shellB.setDisable(false);
 				radixB.setDisable(false);
 
 			} catch (IOException ioException) {
@@ -505,7 +487,7 @@ public class GUIController {
 			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
 				clientNameSTLabel.setText("No Clients In this section");
 				insertionB.setDisable(true);
-				mergeB.setDisable(true);
+				shellB.setDisable(true);
 				radixB.setDisable(true);
 
 			}
@@ -539,7 +521,7 @@ public class GUIController {
 				mainBorderPane.setCenter(Pane);
 
 				if (bookS.getClientsQueue().size > 0) {
-					ArrayList<Client> a = queueToArray(bookS.getClientsQueue());
+					ArrayList<Client> a = bookS.getClientsQueue().toArray();
 					ObservableList<Client> oList = FXCollections.observableArrayList(a);
 					loadClientListSectionThree(oList);
 
@@ -581,7 +563,6 @@ public class GUIController {
 	}
 	
 	private void loadSectionFour() {
-		System.out.println("loadsF");
 		if (!bookS.getClientsQueue().isEmpty()) {
 			nextClientTxL.setText(bookS.getClientsQueue().front().getT().getName());
 		}else {
@@ -804,7 +785,7 @@ public class GUIController {
 	}
 
 	@FXML
-	void mergeSort(ActionEvent event) {
+	void shellSort(ActionEvent event) {
 		setSectionTwoSecondary();
 		bookS.getClients().get(bookS.getClients().size() - 1).sortIsnbList(2);
 		loadIsbnSectionTwo(getBooks());
