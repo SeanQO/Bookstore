@@ -52,7 +52,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Button fx:id="insertionB" mnemonicParsing="false" onAction="#insertionSort" text="Insertion Sort" />
-                        <Button fx:id="mergeB" mnemonicParsing="false" onAction="#mergeSort" text="Merge Sort" />
+                        <Button fx:id="shellB" mnemonicParsing="false" onAction="#shellSort" text="Shell Sort" />
                         <Button fx:id="radixB" mnemonicParsing="false" onAction="#radixSort" text="Radix Sort" />
                      </children>
                   </HBox>

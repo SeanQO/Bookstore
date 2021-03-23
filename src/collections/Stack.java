@@ -53,7 +53,7 @@ public class Stack<T> implements IStack<T> {
 		return size;
 	}
 
-	@Override
+	/*@Override
 	public ArrayList<T> toArray() {
 		ArrayList<T> booksArray = new ArrayList<>();
 		Stack<T> temp = this;
@@ -64,5 +64,16 @@ public class Stack<T> implements IStack<T> {
 		}
        
 	   return booksArray;
-	}
+	}*/
+	
+	 @Override
+	    public ArrayList<T> toArray() {
+			ArrayList<T> booksArray = new ArrayList<>();
+			SElement<T> temp = top;
+			while(temp!=null) {
+				booksArray.add(temp.getT());
+				temp = temp.getPrevElement();
+			}
+			return booksArray;
+		}
 }

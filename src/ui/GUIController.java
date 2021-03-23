@@ -1,5 +1,6 @@
 package ui;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,7 +120,7 @@ public class GUIController {
 	private Button insertionB;
 
 	@FXML
-	private Button mergeB;
+	private Button shellB;
 
 	@FXML
 	private Button radixB;
@@ -234,12 +235,9 @@ public class GUIController {
 
 	private int sectionTwoBookIndex;
 
-	private int clientIndexInSTwo;
-
 	@SuppressWarnings("unchecked")
 	public GUIController() {
 		sectionTwoBookIndex = 0;
-		clientIndexInSTwo = 0;
 		isClientSelectingSTwo = false;
 		bookS = null;
 		isClientSelecting = false;
@@ -289,14 +287,9 @@ public class GUIController {
 			}
 			loadAllBooksTable();
 
-		}else {
-			System.out.println(bookS.getClientsQueue().getSize());
-			System.out.println(bookS.getClientsQueue().isEmpty());
-			
 		}
 	}
 	
-
 	// ****** filling and setting ******
 
 	// * fill tables *
@@ -372,8 +365,6 @@ public class GUIController {
 		bookPriceRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 
 	}
-	
-	
 
 	// * Alerts setup *
 	private void errorLoadingBookListAlert() {
@@ -448,6 +439,13 @@ public class GUIController {
 		error.showAndWait();
 
 	}
+	
+	private void clientInRegisterAlert() {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Client is in this register");
+		error.setContentText("Please wait untill the client leaves the register to close it.");
+		error.showAndWait();
+	}
 
 	// ****** menu options actions ******
 
@@ -479,13 +477,13 @@ public class GUIController {
 
 				}
 
-				String clientName = bookS.getClients().get(clientIndexInSTwo).getName();
+				String clientName = bookS.getClients().get(0).getName();
 				clientNameSTLabel.setText(clientName);
 
 				loadIsbnSectionTwo(getBooks());
 
 				insertionB.setDisable(false);
-				mergeB.setDisable(false);
+				shellB.setDisable(false);
 				radixB.setDisable(false);
 
 			} catch (IOException ioException) {
@@ -494,7 +492,7 @@ public class GUIController {
 			} catch (IndexOutOfBoundsException indexOutOfBoundsException) {
 				clientNameSTLabel.setText("No Clients In this section");
 				insertionB.setDisable(true);
-				mergeB.setDisable(true);
+				shellB.setDisable(true);
 				radixB.setDisable(true);
 
 			}
@@ -506,7 +504,7 @@ public class GUIController {
 	}
 
 	private ObservableList<Book> getBooks() {
-		Client client = bookS.getClients().get(clientIndexInSTwo);
+		Client client = bookS.getClients().get(0);
 		ObservableList<Book> books = FXCollections.observableArrayList();
 		for (int i = 0; i < client.getIsnbList().length; i++) {
 			books.add(bookS.searchBook(client.getIsnbList()[i]));
@@ -528,7 +526,8 @@ public class GUIController {
 				mainBorderPane.setCenter(Pane);
 
 				if (bookS.getClientsQueue().size > 0) {
-					ObservableList<Client> oList = FXCollections.observableArrayList(bookS.getClientsQueue().toArray());
+					ArrayList<Client> a = bookS.getClientsQueue().toArray();
+					ObservableList<Client> oList = FXCollections.observableArrayList(a);
 					loadClientListSectionThree(oList);
 
 				}
@@ -569,7 +568,6 @@ public class GUIController {
 	}
 	
 	private void loadSectionFour() {
-		
 		if (!bookS.getClientsQueue().isEmpty()) {
 			nextClientTxL.setText(bookS.getClientsQueue().front().getT().getName());
 		}else {
@@ -578,18 +576,22 @@ public class GUIController {
 		
 		if (bookS.getCashiers()[0].getClient() != null) {
 			loadRegisterOne();
+			clientNameOneTxL.setText(bookS.getCashiers()[0].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[1].getClient() != null) {
 			loadRegisterTwo();
+			clientNameTwoTxL.setText(bookS.getCashiers()[1].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[2].getClient() != null) {
 			loadRegisterThree();
+			clientNameThreeTxL.setText(bookS.getCashiers()[2].getClient().getName());
 		}
 		
 		if (bookS.getCashiers()[3].getClient() != null) {
 			loadRegisterFour();
+			clientNameThreeTxL.setText(bookS.getCashiers()[3].getClient().getName());
 		}
 		
 	}
@@ -744,9 +746,9 @@ public class GUIController {
 			loadAllBooksTable();
 
 			clientNameTxtF.setText("");
-			;
+			
 			idClientTxtF.setText("");
-
+			
 			isClientSelecting = false;
 
 			addBookToListB.setDisable(true);
@@ -771,7 +773,7 @@ public class GUIController {
 
 			sectionTwoBorderPane.setRight(Pane);
 
-			int isbn = bookS.getClients().get(clientIndexInSTwo).getIsnbList()[sectionTwoBookIndex];
+			int isbn = bookS.getClients().get(0).getIsnbList()[sectionTwoBookIndex];
 			sectionTwoBookIndex++;
 			bookNameTxF.setText(bookS.searchBook(isbn).getName() + "");
 			bookLocationTxF.setText(bookS.searchLocation(isbn) + "");
@@ -792,7 +794,7 @@ public class GUIController {
 	}
 
 	@FXML
-	void mergeSort(ActionEvent event) {
+	void shellSort(ActionEvent event) {
 		setSectionTwoSecondary();
 		bookS.getClients().get(bookS.getClients().size() - 1).sortIsnbList(2);
 		loadIsbnSectionTwo(getBooks());
@@ -844,14 +846,13 @@ public class GUIController {
 		
 		while (iterator.hasNext()) {
 			Book b = (Book) iterator.next();
-			bookS.getClients().get(clientIndexInSTwo).addBookToBasket(b);
+			bookS.getClients().get(0).addBookToBasket(b);
 		}
 		
-		bookS.addClientToQueue(bookS.getClients().get(clientIndexInSTwo));	
-		bookS.getClients().remove(clientIndexInSTwo);
-		 
+		bookS.addClientToQueue(bookS.getClients().get(0));	
+		bookS.getClients().remove(0);
+		
 		isClientSelectingSTwo = false;
-		clientIndexInSTwo++;
 		sectionTwoBookIndex = 0;
 		openSectiontwo();
 
@@ -935,28 +936,56 @@ public class GUIController {
 		}
 
 	}
-
+	
 	private void closeRegister(int regNumber) {
 		switch (regNumber) {
 		case 1:
-			clientNameOneTxL.setText("Register closed");
-			registerOneTable.setDisable(true);
-			ROneButton.setText("Open register");
+			if (bookS.getCashiers()[0].getClient() == null) {
+				clientNameOneTxL.setText("Register closed");
+				registerOneTable.setDisable(true);
+				ROneButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 2:
-			clientNameTwoTxL.setText("Register closed");
-			registerTwoTable.setDisable(true);
-			RTwoButton.setText("Open register");
+			if (bookS.getCashiers()[1].getClient() == null) {
+				clientNameTwoTxL.setText("Register closed");
+				registerTwoTable.setDisable(true);
+				RTwoButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 3:
-			clientNameThreeTxL.setText("Register closed");
-			registerThreeTable.setDisable(true);
-			RThreeButton.setText("Open register");
+			if (bookS.getCashiers()[2].getClient() == null) {
+				clientNameThreeTxL.setText("Register closed");
+				registerThreeTable.setDisable(true);
+				RThreeButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		case 4:
-			clientNameFourTxL.setText("Register closed");
-			registerFourTable.setDisable(true);
-			RFourButton.setText("Open register");
+			if (bookS.getCashiers()[3].getClient() == null) {
+				clientNameFourTxL.setText("Register closed");
+				registerFourTable.setDisable(true);
+				RFourButton.setText("Open register");
+			
+			}else {
+				clientInRegisterAlert();
+				
+			}
+			
 			break;
 		default:
 			break;
