@@ -36,14 +36,13 @@ public class Stack<T> implements IStack<T> {
 	}
 
 	public SElement<T> pop() {
-		@SuppressWarnings("unused")
 		SElement<T> t = top;
 		if (top.getPrevElement() == null) {
 			top = null;
 		} else {
 			top = top.getPrevElement();
 		}
-		return null;
+		return t;
 	}
 	
 	public SElement<T> getTop() {
