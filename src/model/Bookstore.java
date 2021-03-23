@@ -44,16 +44,21 @@ public class Bookstore {
 	public void nextStep() {
 		for (int i = 0; i < cashiers.length; i++) {
 			if (cashiers[i].getClient() == null && cashiers[i].isAvaliable()) {
+				System.out.println("a");
 				if (!clientsQueue.isEmpty()) {
+					System.out.println("b");
 					cashiers[i].setClient(clientsQueue.front().getT());
 					clientsQueue.dequeue();
 				}
 				
 			}else if (cashiers[i].getClient() != null && cashiers[i].isAvaliable()) {
-				if(cashiers[i].getClient().getBasket().size == 0) {
+				System.out.println("c");
+				if(cashiers[i].getClient().getBasket().getTop() == null) {
+					System.out.println("d");
 					cashiers[i] = new Cashier();
 					
 				}else {
+					System.out.println("e");
 					cashiers[i].nextStep();
 					
 				}

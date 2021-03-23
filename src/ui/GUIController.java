@@ -360,9 +360,9 @@ public class GUIController {
 	}
 	
 	private void loadRegisterFourTable(ObservableList<Book> observableList) {
-		registerThreeTable.setItems(observableList);
-		bookNameRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
-		bookPriceRegisterThreeColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
+		registerFourTable.setItems(observableList);
+		bookNameRegisterFourColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("name"));
+		bookPriceRegisterFourColumn.setCellValueFactory(new PropertyValueFactory<Book, Double>("price"));
 
 	}
 
